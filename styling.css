@@ -1,0 +1,54 @@
+body {
+    background-image: url("AD OL.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.top-navbar {
+    /* background: linear-gradient(90deg, rgba(2, 0, 36, 0.9) 0%, rgba(105, 9, 121, 0.9) 20%, rgba(82, 54, 150, 0) 40%, rgba(58, 101, 181, 0) 60%, rgba(36, 143, 209, 0.9) 80%, rgba(0, 212, 255, 0.9) 100%); */
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.player-name-element {
+    margin-top: 3px;
+}
+
+.pilot-select-element {
+    font-style: italic;
+    font-size: 44px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    width: 300px;
+    margin-top: 10px;
+}
+
+.pilot-option-element {
+    background-color: black;
+}
+
+.hp-elements {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.hp-input {
+    color: white;
+    background-color: transparent;
+    border: none;
+    width: 45px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+#player-1-hp-label {
+    padding-left: 20px;
+}
+
+.credits-element {
+    font-size: 10px;
+}
