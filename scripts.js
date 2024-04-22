@@ -28,54 +28,58 @@ function updatePlayerPilotCard(playerNumber) {
 
     // Figure out the new URL for the pilot image
     var newPilotImgURL = "";
+
+    // Thank you, builder, for hosting all of these!
+    var IMAGE_SOURCE_PREFIX = "https://www.aerodomebuilder.com/images/pilots/";
+
     switch (selectedPilot) {
         case "Jax Fernandez":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF005.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF005.png";
             break;
         case "Lt. Archie Anderson":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF002.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF002.png";
             break;
         case "Van Vertigo":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF015.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF015.png";
             break;
         case "TSGT. Hilda McMahon":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF012.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF012.png";
             break;
         case "Fare Collins":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF007.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF007.png";
             break;
         case "Lt. Sven Bergman":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF004.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF004.png";
             break;
         case "1st Lt. Havoc Moua":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF010.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF010.png";
             break;
         case "Ash Buchanan":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF013.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF013.png";
             break;
         case "Lance Hamill":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF008.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF008.png";
             break;
         case "Capt. Theodosia Costello":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF001.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF001.png";
             break;
         case "1st Lt. Dane X":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF011.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF011.png";
             break;
         case "Dario Stardancer":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF014.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF014.png";
             break;
         case "Elena Zane":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF006.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF006.png";
             break;
         case "Lt. Sophia Saleh":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF003.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF003.png";
             break;
         case "Capt. Alice Drummond":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF009.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF009.png";
             break;
         case "B3-47L":
-            newPilotImgURL = "https://www.aerodomebuilder.com/images/pilots/AEF016.png";
+            newPilotImgURL = IMAGE_SOURCE_PREFIX + "AEF016.png";
             break;
         default:
             newPilotImgURL = "Aerodome-Logo-800.png";
