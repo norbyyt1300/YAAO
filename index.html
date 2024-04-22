@@ -17,17 +17,20 @@
 
     <link rel="stylesheet" href="styling.css">
 
+    <script src="scripts.js"></script>
+
 </head>
 
 <body class="m-0 border-0 m-0 border-0">
-    <!-- Navbar for the player names, their chosen pilot, and their remaining hit points -->
+
+    <!-- Top Navbar for the player names, their chosen pilot, and their remaining hit points -->
     <nav class="navbar top-navbar">
         <div class="container-fluid">
 
             <!-- Left elements for player 1 -->
             <div>
-                <h2 id="player_1_name" class="player-name-element" contenteditable="true">Victor</h2>
-                <select id="player_1_pilot" class="pilot-select-element">
+                <h2 id="player1Name" class="player-name-element" contenteditable="true">Victor</h2>
+                <select id="player1PilotSelect" class="pilot-select-element" onchange="updatePlayerPilotCard(1)">
                     <option class="pilot-option-element">Jax Fernandez</option>
                     <option class="pilot-option-element">Lt. Archie Anderson</option>
                     <option class="pilot-option-element">Van Vertigo</option>
@@ -52,8 +55,9 @@
 
             <!-- Right elements for player 2 -->
             <div class="text-right">
-                <h2 id="player_2_name" class="player-name-element" contenteditable="true">Linden</h2>
-                <select id="player_2_pilot" class="pilot-select-element text-right">
+                <h2 id="player2Name" class="player-name-element" contenteditable="true">Linden</h2>
+                <select id="player2PilotSelect" class="pilot-select-element text-right"
+                    onchange="updatePlayerPilotCard(2)">
                     <option class="pilot-option-element">Jax Fernandez&nbsp;</option>
                     <option class="pilot-option-element">Lt. Archie Anderson&nbsp;</option>
                     <option class="pilot-option-element">Van Vertigo&nbsp;</option>
@@ -72,17 +76,29 @@
                     <option class="pilot-option-element">B3-47L&nbsp;</option>
                 </select>
                 <br>
-                <label class="hp-elements text-right">HIT POINTS:</label><input id="player_2_hp" class="hp-elements hp-input text-right"
-                    type="number" value=15>
+                <label class="hp-elements text-right">HIT POINTS:</label><input id="player_2_hp"
+                    class="hp-elements hp-input text-right" type="number" value=15>
             </div>
         </div>
     </nav>
 
-    <!-- Settings button -->
-    <nav class="navbar fixed-bottom">
+    <!-- Bottom settings button navbar -->
+    <nav id="settingsNavbar" class="navbar fixed-bottom">
         <div class="container-fluid">
             <!-- <span class="navbar-text credits-element">Aerodome is a Trademark of Ephyrean Games.</span> -->
-            <button class="btn" data-toggle="modal" data-target="#settingsModal">&#9881;</button>
+            <button id="settingsButton" class="btn" data-toggle="modal" data-target="#settingsModal">&#9881;</button>
+        </div>
+    </nav>
+
+
+    <!-- Bottom player pilot cards navbar -->
+    
+    <nav class="navbar fixed-bottom">
+        <div class="container-fluid">
+            <img id="player1PilotCardImg" onclick="togglePilotCardImgTransparency(this)" class="pilot-card-img"
+                src="https://www.aerodomebuilder.com/images/pilots/AEF005.png">
+            <img id="player2PilotCardImg" onclick="togglePilotCardImgTransparency(this)" class="pilot-card-img"
+                src="https://www.aerodomebuilder.com/images/pilots/AEF005.png">
         </div>
     </nav>
 

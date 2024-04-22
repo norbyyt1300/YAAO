@@ -23,7 +23,7 @@ function updatePlayerPilotCard(playerNumber) {
     console.log("Updating " + pilotImgElementId + " based on change to " + selectElementId);
 
     // Get the selected pilot
-    var selectedPilot = document.getElementById(selectElementId).value;
+    var selectedPilot = document.getElementById(selectElementId).value.trim();
     console.log("New pilot selection: " + selectedPilot);
 
     // Figure out the new URL for the pilot image
@@ -79,9 +79,7 @@ function updatePlayerPilotCard(playerNumber) {
             break;
         default:
             newPilotImgURL = "Aerodome-Logo-800.png";
-    }
-
-    
+    }  
 
     // Apply this new URL to the img element
     console.log("Applying new URL for that pilot: " + newPilotImgURL);

@@ -52,3 +52,16 @@ body {
 .credits-element {
     font-size: 10px;
 }
+
+.pilot-card-img {
+    height: 200px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+#settingsNavbar {
+    margin-bottom: 220px;
+}
+#settingsButton {
+    opacity: 0.5;
+}
