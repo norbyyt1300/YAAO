@@ -142,13 +142,14 @@ function parseAndApplyPlayerDecks() {
     // For the rest of the 1 - 9 cards, save them to an array
     var player1BattleCards = player1CardArray.filter((cardCode) => cardCode.startsWith("RH1"));
     var player2BattleCards = player2CardArray.filter((cardCode) => cardCode.startsWith("RH1"));
+    console.log("Player battle card decks: ", player1BattleCards, player2BattleCards);
 
     // Update the card viewer select to be able to show those cards
     var player1BattleCardSelectElement = document.getElementById("player1BattleCardSelect");
     for (var i = 1; i < 10; i++) {
         const option = document.createElement("option");
         option.text = i;
-        option.value = player1BattleCards[i - 1];
+        option.value = player1BattleCards[i - 1].replace("\\", "").replace("\\", "");
         option.classList = "battle-card-option-element";
         player1BattleCardSelectElement.appendChild(option);
     }
@@ -156,7 +157,7 @@ function parseAndApplyPlayerDecks() {
     for (var i = 1; i < 10; i++) {
         const option = document.createElement("option");
         option.text = i;
-        option.value = player2BattleCards[i - 1];
+        option.value = player2BattleCards[i - 1].replace("\\", "").replace("\\", "");
         option.classList = "battle-card-option-element";
         player2BattleCardSelectElement.appendChild(option);
     }
@@ -261,6 +262,11 @@ function updatePlayerBattleCard(playerNumber) {
 
     // Figure out the new URL for the card image
     var newBattleCardImgURL = BATTLE_CARD_IMAGE_URL_PREFIX + selectedBattleCardCode + ".png";
+
+    // Allow hiding
+    if (selectedBattleCardCode == "...") {
+        newBattleCardImgURL = "";
+    }
 
     // Apply this new URL to the img element
     console.log("Applying new URL for that battle card: " + newBattleCardImgURL);
