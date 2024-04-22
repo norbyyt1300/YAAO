@@ -5,9 +5,12 @@ body {
     background-size: cover;
     font-family: "Bebas Neue", sans-serif;
 
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 }
 
 .top-navbar {
@@ -66,6 +69,15 @@ body {
 #settingsNavbar {
     margin-bottom: 280px;
 }
+
 #settingsButton {
-    opacity: 0.5;
+    opacity: 0.9;
+    margin-bottom: 150px;
+    color: white;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#settingsModal {
+    font-family: arial;
 }

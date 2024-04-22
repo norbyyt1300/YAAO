@@ -53,6 +53,9 @@
                     class="hp-elements hp-input" type="number" value=15>
             </div>
 
+            <!-- Settings button -->
+            <div id="settingsButton" class="btn" data-toggle="modal" data-target="#settingsModal">&#9881;</div>
+
             <!-- Right elements for player 2 -->
             <div class="text-right">
                 <h2 id="player2Name" class="player-name-element" contenteditable="true">Linden</h2>
@@ -82,15 +85,6 @@
         </div>
     </nav>
 
-    <!-- Bottom settings button navbar -->
-    <nav id="settingsNavbar" class="navbar fixed-bottom">
-        <div class="container-fluid">
-            <!-- <span class="navbar-text credits-element">Aerodome is a Trademark of Ephyrean Games.</span> -->
-            <button id="settingsButton" class="btn" data-toggle="modal" data-target="#settingsModal">&#9881;</button>
-        </div>
-    </nav>
-
-
     <!-- Bottom player pilot cards navbar -->
     
     <nav class="navbar fixed-bottom">
@@ -104,21 +98,42 @@
 
     <!-- Modal -->
     <div id="settingsModal" class="modal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Settings</h5>
+                    <h5 class="modal-title">Settings (NOT YET WORKING)</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Lorem ipsum.</p>
-                </div>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="player1BuilderString">Player 1 TTS String</label>
+                            <input type="text" class="form-control" id="player1BuilderString" placeholder="Enter Player 1 TTS String">
+                            <small class="form-text text-muted">Paste the TTS String for this player's deck from the Aerodome Builder</small>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <label for="player2BuilderString">Player 2 TTS String</label>
+                            <input type="text" class="form-control" id="player2BuilderString" placeholder="Enter Player 2 TTS String">
+                            <small class="form-text text-muted">Paste the TTS String for this player's deck from the Aerodome Builder</small>
+                        </div>
+                      </form>
+
+                      <br>
+                      <a class="small" target="_blank" href="https://github.com/norbyyt1300/YAAO">Click here to view and/or contribute to source code for this overlay!</a>
+
+                    </div>
+
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
+                
             </div>
         </div>
     </div>
