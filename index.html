@@ -14,12 +14,17 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
     <style>
         body {
             background-image: url("AD OL.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
+            font-family: "Bebas Neue", sans-serif;
         }
 
         .hp-elements {
@@ -29,7 +34,7 @@
 
         .player-pilot-select {
             font-style: italic;
-            font-size: 36px;
+            font-size: 44px;
 
             color: white;
             background-color: transparent;
@@ -59,11 +64,15 @@
             border: none;
             width: 65px;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 12px;
         }
 
         #player-1-hp-label {
             padding-left: 20px;
+        }
+
+        .player-name-element {
+            margin-top: 3px;
         }
     </style>
 </head>
@@ -73,7 +82,7 @@
     <nav class="navbar custom-gradient-navbar">
         <div class="container-fluid">
             <div>
-                <h2 id="player_1_name" contenteditable="true">Victor</h2>
+                <h2 id="player_1_name" class="player-name-element" contenteditable="true">Victor</h2>
                 <select id="player_1_pilot" class="player-pilot-select">
                     <option class="pilot-option">Jax Fernandez</option>
                     <option class="pilot-option">Lt. Archie Anderson</option>
@@ -102,24 +111,24 @@
             -->
 
             <div class="text-end">
-                <h2 id="player_2_name" contenteditable="true">Linden</h2>
+                <h2 id="player_2_name" class="player-name-element" contenteditable="true">Linden</h2>
                 <select id="player_2_pilot" class="player-pilot-select text-end">
-                    <option class="pilot-option">Jax Fernandez</option>
-                    <option class="pilot-option">Lt. Archie Anderson</option>
-                    <option class="pilot-option">Van Vertigo</option>
-                    <option class="pilot-option">TSGT. Hilda McMahon</option>
-                    <option class="pilot-option">Fare Collins</option>
-                    <option class="pilot-option">Lt. Sven Bergman</option>
-                    <option class="pilot-option">1st Lt. Havoc Moua</option>
-                    <option class="pilot-option">Ash Buchanan</option>
-                    <option class="pilot-option">Lance Hamill</option>
-                    <option class="pilot-option">Capt. Theodosia Costello</option>
-                    <option class="pilot-option">1st Lt. Dane X</option>
-                    <option class="pilot-option">Dario Stardancer</option>
-                    <option class="pilot-option">Elena Zane</option>
-                    <option class="pilot-option">Lt. Sophia Saleh</option>
-                    <option class="pilot-option">Capt. Alice Drummond</option>
-                    <option class="pilot-option">B3-47L</option>
+                    <option class="pilot-option">Jax Fernandez&nbsp;</option>
+                    <option class="pilot-option">Lt. Archie Anderson&nbsp;</option>
+                    <option class="pilot-option">Van Vertigo&nbsp;</option>
+                    <option class="pilot-option">TSGT. Hilda McMahon&nbsp;</option>
+                    <option class="pilot-option">Fare Collins&nbsp;</option>
+                    <option class="pilot-option">Lt. Sven Bergman&nbsp;</option>
+                    <option class="pilot-option">1st Lt. Havoc Moua&nbsp;</option>
+                    <option class="pilot-option">Ash Buchanan&nbsp;</option>
+                    <option class="pilot-option">Lance Hamill&nbsp;</option>
+                    <option class="pilot-option">Capt. Theodosia Costello&nbsp;</option>
+                    <option class="pilot-option">1st Lt. Dane X&nbsp;</option>
+                    <option class="pilot-option">Dario Stardancer&nbsp;</option>
+                    <option class="pilot-option">Elena Zane&nbsp;</option>
+                    <option class="pilot-option">Lt. Sophia Saleh&nbsp;</option>
+                    <option class="pilot-option">Capt. Alice Drummond&nbsp;</option>
+                    <option class="pilot-option">B3-47L&nbsp;</option>
                 </select>
                 <br>
                 <label class="hp-elements">HP:</label><input id="player_2_hp" class="hp-elements hp-input" type="number"
