@@ -1,3 +1,5 @@
+// -----------------------------------------------------------------------------------------------------
+
 // When a pilot card img is clicked, either make it very transparent or not very transparent
 function togglePilotCardImgTransparency(element) {
     // Assume a default should be 0.9
@@ -8,6 +10,8 @@ function togglePilotCardImgTransparency(element) {
     console.log("Setting the opacity for " + element.id + " to " + newOpacity);
     element.style.opacity = newOpacity;
 }
+
+// -----------------------------------------------------------------------------------------------------
 
 // When the select changes, update the player pilot card
 function updatePlayerPilotCard(playerNumber) {
@@ -89,4 +93,24 @@ function updatePlayerPilotCard(playerNumber) {
     console.log("Applying new URL for that pilot: " + newPilotImgURL);
     document.getElementById(pilotImgElementId).src = newPilotImgURL;
 
+}
+
+// -----------------------------------------------------------------------------------------------------
+
+function parseAndApplyPlayerDecks() {
+    console.log("Now parsing player decks!");
+
+    // Read in each deck TTS string
+
+    // Split the string into tokens
+
+    // Extract from the tokens the pilot code
+
+    // Use that pilot code to update the pilot name and pilot card image
+
+    // For the rest of the cards, save them to an array
+
+    // Update the card viewer to be able to show those cards
+
+    // Also allow toggling a given card from normal to dazed
 }

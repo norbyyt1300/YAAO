@@ -112,7 +112,7 @@
                         <div class="form-group">
                             <label for="player1BuilderString">Player 1 TTS String</label>
                             <input type="text" class="form-control" id="player1BuilderString" placeholder="Enter Player 1 TTS String">
-                            <small class="form-text text-muted">Paste the TTS String for this player's deck from the Aerodome Builder</small>
+                            <small class="form-text text-muted">Paste the TTS String for Player 1's deck from the <a href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
                         </div>
 
                         <br>
@@ -120,7 +120,7 @@
                         <div class="form-group">
                             <label for="player2BuilderString">Player 2 TTS String</label>
                             <input type="text" class="form-control" id="player2BuilderString" placeholder="Enter Player 2 TTS String">
-                            <small class="form-text text-muted">Paste the TTS String for this player's deck from the Aerodome Builder</small>
+                            <small class="form-text text-muted">Paste the TTS String for Player 2's deck from the <a href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
                         </div>
                       </form>
 
@@ -130,7 +130,7 @@
                     </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="parseAndApplyPlayerDecks()">Save</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
                 
