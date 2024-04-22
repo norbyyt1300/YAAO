@@ -29,7 +29,6 @@
 
             <!-- Left elements for player 1 -->
             <div>
-                <h2 id="player1Name" class="player-name-element" contenteditable="true">Victor</h2>
                 <select id="player1PilotSelect" class="pilot-select-element text-center" onchange="updatePlayerPilotCard(1)">
                     <option class="pilot-option-element">Jax Fernandez</option>
                     <option class="pilot-option-element">Lt. Archie Anderson</option>
@@ -49,6 +48,8 @@
                     <option class="pilot-option-element">B3-47L</option>
                 </select>
                 <br>
+                <span id="player1Name" class="player-name-element" contenteditable="true">Victor</span>
+                <br>
                 <label id="player-1-hp-label" class="hp-elements">HIT POINTS:</label><input id="player_1_hp"
                     class="hp-elements hp-input" type="number" value=15>
             </div>
@@ -58,7 +59,6 @@
 
             <!-- Right elements for player 2 -->
             <div class="text-right">
-                <h2 id="player2Name" class="player-name-element" contenteditable="true">Linden</h2>
                 <select id="player2PilotSelect" class="pilot-select-element text-center"
                     onchange="updatePlayerPilotCard(2)">
                     <option class="pilot-option-element">Jax Fernandez</option>
@@ -79,6 +79,8 @@
                     <option class="pilot-option-element">B3-47L</option>
                 </select>
                 <br>
+                <span id="player2Name" class="player-name-element" contenteditable="true">Linden</span>
+                <br>
                 <label class="hp-elements text-right">HIT POINTS:</label><input id="player_2_hp"
                     class="hp-elements hp-input text-right" type="number" value=15>
             </div>
@@ -90,10 +92,10 @@
         <nav id="battleCardNavbar" class="navbar fixed-bottom">
 
             <div>
-                <img id="player1BattleCardImg" onclick="toggleCardImgTransparency(this)" class="battle-card-img"
+                <img id="player1BattleCardImg" onclick="toggleBattleCardImgSize(this)" class="battle-card-img"
                     src="">
                 <br>
-                <label class="">Battle Card:</label>
+                <img class="battle-card-label-img" src="cards-icon.png">
                 <br>
                 <select id="player1BattleCardSelect" class="battle-card-select-element text-center" onchange="updatePlayerBattleCard(1)">
                     <option>...</option>
@@ -101,10 +103,10 @@
             </div>
 
             <div>
-                <img id="player2BattleCardImg" onclick="toggleCardImgTransparency(this)" class="battle-card-img"
+                <img id="player2BattleCardImg" onclick="toggleBattleCardImgSize(this)" class="battle-card-img"
                     src="">
                 <br>
-                <label class="">Battle Card:</label>
+                <img class="battle-card-label-img" src="cards-icon.png">
                 <br>
                 <select id="player2BattleCardSelect" class="battle-card-select-element text-center" onchange="updatePlayerBattleCard(2)">
                     <option>...</option>
@@ -118,9 +120,9 @@
     
     <nav class="navbar fixed-bottom">
         <div class="container-fluid">
-            <img id="player1PilotCardImg" onclick="toggleCardImgTransparency(this)" class="pilot-card-img"
+            <img id="player1PilotCardImg" onclick="togglePilotImgSize(this)" class="pilot-card-img"
                 src="https://www.aerodomebuilder.com/images/pilots/AEF005.png">
-            <img id="player2PilotCardImg" onclick="toggleCardImgTransparency(this)" class="pilot-card-img"
+            <img id="player2PilotCardImg" onclick="togglePilotImgSize(this)" class="pilot-card-img"
                 src="https://www.aerodomebuilder.com/images/pilots/AEF005.png">
         </div>
     </nav>
@@ -153,6 +155,13 @@
                         </div>
                       </form>
 
+                      <br>
+                      <small>Tip: Click on a card image to toggle it from full-size to small-size.</small>
+                      <br>
+                      <small>Tip: Click on the player name text (e.g., "Linden") to edit it.</small>
+                      <br>
+                      <small>Tip: Use your keyboard arrow keys to scroll through the battle card drop-down and select a card to display, or select the "..." option to hide the battle card completely.</small>
+                      <br>
                       <br>
                       <a class="small" target="_blank" href="https://github.com/norbyyt1300/YAAO">Click here to view and/or contribute to source code for this overlay!</a>
 

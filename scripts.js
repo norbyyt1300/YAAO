@@ -4,7 +4,7 @@ var BUILDER_IMAGES_URL_PREFIX = "https://www.aerodomebuilder.com/images/";
 
 // -----------------------------------------------------------------------------------------------------
 
-// When a pilot card img is clicked, either make it very transparent or not very transparent
+// When a card img is clicked, either make it very transparent or not very transparent
 function toggleCardImgTransparency(element) {
     // Assume a default should be 0.9
     var newOpacity = 0.9;
@@ -13,6 +13,26 @@ function toggleCardImgTransparency(element) {
     }
     console.log("Setting the opacity for " + element.id + " to " + newOpacity);
     element.style.opacity = newOpacity;
+}
+
+// BATTLE CARD When a card img is clicked, either make it very small or full size
+function toggleBattleCardImgSize(element) {
+    var newHeight = "400px";
+    if (element.style.height == newHeight) {
+        newHeight = "40px";
+    }
+    console.log("Setting the height for " + element.id + " to " + newHeight);
+    element.style.height = newHeight;
+}
+
+// PILOT CARD When a card img is clicked, either make it very small or full size
+function togglePilotImgSize(element) {
+    var newHeight = "250px";
+    if (element.style.height == newHeight) {
+        newHeight = "25px";
+    }
+    console.log("Setting the height for " + element.id + " to " + newHeight);
+    element.style.height = newHeight;
 }
 
 // -----------------------------------------------------------------------------------------------------

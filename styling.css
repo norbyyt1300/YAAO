@@ -21,17 +21,18 @@ body {
 }
 
 .player-name-element {
-    margin-top: 3px;
+    margin-top: 8px;
+    font-size: 59px;
 }
 
 .pilot-select-element {
     font-style: italic;
-    font-size: 44px;
+    font-size: 30px;
     color: white;
     background-color: transparent;
     border: none;
-    width: 400px;
-    margin-top: 10px;
+    width: 278px;
+    margin-top: 1px;
 }
 
 .pilot-option-element {
@@ -49,7 +50,6 @@ body {
     border: none;
     width: 45px;
     text-align: center;
-    margin-top: 12px;
 }
 
 #player-1-hp-label {
@@ -63,7 +63,7 @@ body {
 .pilot-card-img {
     height: 250px;
     margin-bottom: 20px;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 #settingsNavbar {
@@ -92,4 +92,12 @@ body {
 
 .battle-card-img {
     height: 400px;
+    opacity: 0.95;
+}
+
+.battle-card-label-img {
+    height: 40px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    opacity: 0.95;
 }
