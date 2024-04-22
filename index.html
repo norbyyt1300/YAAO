@@ -30,7 +30,7 @@
             <!-- Left elements for player 1 -->
             <div>
                 <h2 id="player1Name" class="player-name-element" contenteditable="true">Victor</h2>
-                <select id="player1PilotSelect" class="pilot-select-element" onchange="updatePlayerPilotCard(1)">
+                <select id="player1PilotSelect" class="pilot-select-element text-center" onchange="updatePlayerPilotCard(1)">
                     <option class="pilot-option-element">Jax Fernandez</option>
                     <option class="pilot-option-element">Lt. Archie Anderson</option>
                     <option class="pilot-option-element">Van Vertigo</option>
@@ -59,24 +59,24 @@
             <!-- Right elements for player 2 -->
             <div class="text-right">
                 <h2 id="player2Name" class="player-name-element" contenteditable="true">Linden</h2>
-                <select id="player2PilotSelect" class="pilot-select-element text-right"
+                <select id="player2PilotSelect" class="pilot-select-element text-center"
                     onchange="updatePlayerPilotCard(2)">
-                    <option class="pilot-option-element">Jax Fernandez&nbsp;</option>
-                    <option class="pilot-option-element">Lt. Archie Anderson&nbsp;</option>
-                    <option class="pilot-option-element">Van Vertigo&nbsp;</option>
-                    <option class="pilot-option-element">TSGT. Hilda McMahon&nbsp;</option>
-                    <option class="pilot-option-element">Fare Collins&nbsp;</option>
-                    <option class="pilot-option-element">Lt. Sven Bergman&nbsp;</option>
-                    <option class="pilot-option-element">1st Lt. Havoc Moua&nbsp;</option>
-                    <option class="pilot-option-element">Ash Buchanan&nbsp;</option>
-                    <option class="pilot-option-element">Lance Hamill&nbsp;</option>
-                    <option class="pilot-option-element">Capt. Theodosia Costello&nbsp;</option>
-                    <option class="pilot-option-element">1st Lt. Dane X&nbsp;</option>
-                    <option class="pilot-option-element">Dario Stardancer&nbsp;</option>
-                    <option class="pilot-option-element">Elena Zane&nbsp;</option>
-                    <option class="pilot-option-element">Lt. Sophia Saleh&nbsp;</option>
-                    <option class="pilot-option-element">Capt. Alice Drummond&nbsp;</option>
-                    <option class="pilot-option-element">B3-47L&nbsp;</option>
+                    <option class="pilot-option-element">Jax Fernandez</option>
+                    <option class="pilot-option-element">Lt. Archie Anderson</option>
+                    <option class="pilot-option-element">Van Vertigo</option>
+                    <option class="pilot-option-element">TSGT. Hilda McMahon</option>
+                    <option class="pilot-option-element">Fare Collins</option>
+                    <option class="pilot-option-element">Lt. Sven Bergman</option>
+                    <option class="pilot-option-element">1st Lt. Havoc Moua</option>
+                    <option class="pilot-option-element">Ash Buchanan</option>
+                    <option class="pilot-option-element">Lance Hamill</option>
+                    <option class="pilot-option-element">Capt. Theodosia Costello</option>
+                    <option class="pilot-option-element">1st Lt. Dane X</option>
+                    <option class="pilot-option-element">Dario Stardancer</option>
+                    <option class="pilot-option-element">Elena Zane</option>
+                    <option class="pilot-option-element">Lt. Sophia Saleh</option>
+                    <option class="pilot-option-element">Capt. Alice Drummond</option>
+                    <option class="pilot-option-element">B3-47L</option>
                 </select>
                 <br>
                 <label class="hp-elements text-right">HIT POINTS:</label><input id="player_2_hp"
@@ -85,13 +85,42 @@
         </div>
     </nav>
 
+        <!-- Bottom player battle cards navbar -->
+    
+        <nav id="battleCardNavbar" class="navbar fixed-bottom">
+
+            <div>
+                <img id="player1BattleCardImg" onclick="toggleCardImgTransparency(this)" class="battle-card-img"
+                    src="">
+                <br>
+                <label class="">Battle Card:</label>
+                <br>
+                <select id="player1BattleCardSelect" class="battle-card-select-element text-center" onchange="updatePlayerBattleCard(1)">
+                    <option>...</option>
+                </select>
+            </div>
+
+            <div>
+                <img id="player2BattleCardImg" onclick="toggleCardImgTransparency(this)" class="battle-card-img"
+                    src="">
+                <br>
+                <label class="">Battle Card:</label>
+                <br>
+                <select id="player2BattleCardSelect" class="battle-card-select-element text-center" onchange="updatePlayerBattleCard(2)">
+                    <option>...</option>
+                </select>
+            </div>
+
+
+        </nav>
+
     <!-- Bottom player pilot cards navbar -->
     
     <nav class="navbar fixed-bottom">
         <div class="container-fluid">
-            <img id="player1PilotCardImg" onclick="togglePilotCardImgTransparency(this)" class="pilot-card-img"
+            <img id="player1PilotCardImg" onclick="toggleCardImgTransparency(this)" class="pilot-card-img"
                 src="https://www.aerodomebuilder.com/images/pilots/AEF005.png">
-            <img id="player2PilotCardImg" onclick="togglePilotCardImgTransparency(this)" class="pilot-card-img"
+            <img id="player2PilotCardImg" onclick="toggleCardImgTransparency(this)" class="pilot-card-img"
                 src="https://www.aerodomebuilder.com/images/pilots/AEF005.png">
         </div>
     </nav>
@@ -101,7 +130,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Settings (NOT YET WORKING)</h5>
+                    <h5 class="modal-title">Settings (STILL UNDER DEVELOPMENT)</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

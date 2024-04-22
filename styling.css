@@ -30,7 +30,7 @@ body {
     color: white;
     background-color: transparent;
     border: none;
-    width: 390px;
+    width: 400px;
     margin-top: 10px;
 }
 
@@ -80,4 +80,16 @@ body {
 
 #settingsModal {
     font-family: arial;
+}
+
+#battleCardNavbar {
+    bottom: 300px;
+}
+
+.battle-card-option-element {
+    color: black;
+}
+
+.battle-card-img {
+    height: 300px;
 }
