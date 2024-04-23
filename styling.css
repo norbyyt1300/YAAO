@@ -1,8 +1,11 @@
 body {
+    /*
     background-image: url("AD OL.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    */
+
     font-family: "Bebas Neue", sans-serif;
 
     -webkit-user-select: none;
@@ -11,6 +14,11 @@ body {
     /* IE 10 and IE 11 */
     user-select: none;
     /* Standard syntax */
+}
+
+#overlayBackgroundImage {
+    position: absolute;
+    opacity: 0.95;
 }
 
 .top-navbar {
