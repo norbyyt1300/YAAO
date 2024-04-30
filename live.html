@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="styling.css">
     -->
 
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style-live.css">
 
     <script src="/js/scripts.js"></script>
 
@@ -54,14 +54,11 @@
                     <option class="pilot-option-element">B3-47L</option>
                 </select>
                 <br>
-                <span id="player1Name" class="player-name-element" contenteditable="true">Victor</span>
+                <span id="player1Name" class="player-name-element" >Victor</span>
                 <br>
                 <label id="player-1-hp-label" class="hp-elements">HIT POINTS:</label><input id="player_1_hp"
-                    class="hp-elements hp-input" type="number" value=15>
+                    class="hp-elements hp-input text-center" type="number" value=15 readonly>
             </div>
-
-            <!-- Settings button -->
-            <div id="settingsButton" class="btn" data-toggle="modal" data-target="#settingsModal">&#9881;</div>
 
             <!-- Right elements for player 2 -->
             <div class="text-right">
@@ -85,10 +82,10 @@
                     <option class="pilot-option-element">B3-47L</option>
                 </select>
                 <br>
-                <span id="player2Name" class="player-name-element" contenteditable="true">Linden</span>
+                <span id="player2Name" class="player-name-element" >Linden</span>
                 <br>
                 <label class="hp-elements text-right">HIT POINTS:</label><input id="player_2_hp"
-                    class="hp-elements hp-input text-right" type="number" value=15>
+                    class="hp-elements hp-input text-center" type="number" value=15 readonly>
             </div>
         </div>
     </nav>
@@ -192,23 +189,33 @@
     <script>
         var socket = io();
 
-        var messages = document.getElementById('messages');
-        var form = document.getElementById('form');
-        var input = document.getElementById('input');
+        /*
+        function emitPlayerHPUpdate(playerNumber, newValue) {
+            socket.emit('update', ["HP", playerNumber, newValue]);
+        }
 
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            if (input.value) {
-                socket.emit('update', input.value);
-                input.value = '';
-            }
-        });
+        function emitPlayerNameUpdate(playerNumber, newName) {
+            socket.emit('update', ["Name", playerNumber, newName]);
+        }
 
+        function emitPlayerTTSStringUpdate(playerNumber, newTTSString) {
+            socket.emit('update', ["TTSString", playerNumber, newTTSString]);
+        }
+
+        function emitPlayerPilotUpdate(playerNumber, newPilotName) {
+            socket.emit('update', ["Pilot", playerNumber, newPilotName]);
+        }
+
+        function emitTogglePilotCard(pilotName) {
+            socket.emit('update', ["TogglePilotCard", 0, pilotName]);
+        }
+
+        function emitToggleBattleCard(cardName) {
+            socket.emit('update', ["ToggleBattleCard",0, cardName]);
+        }
+        */
         socket.on('update', function (msg) {
-            var item = document.createElement('li');
-            item.textContent = msg;
-            messages.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
+            console.log(msg);
         });
     </script>
 

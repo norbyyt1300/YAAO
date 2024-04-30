@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>YAAO</title>
+    <title>YAAO Overlay Settings</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,201 +15,178 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!--
-    <link rel="stylesheet" href="styling.css">
-    -->
-
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 
     <script src="/js/scripts.js"></script>
 
 </head>
 
-<body class="m-0 border-0 m-0 border-0">
-    <img id="overlayBackgroundImage" src="/img/AD OL.png" width="100%">
+<body class="m-0 border-0 m-0 border-0 bg-secondary">
 
-    <!-- Top Navbar for the player names, their chosen pilot, and their remaining hit points -->
-    <nav class="navbar top-navbar">
-        <div class="container-fluid">
-
-            <!-- Left elements for player 1 -->
-            <div>
-                <select id="player1PilotSelect" class="pilot-select-element text-center"
-                    onchange="updatePlayerPilotCard(1)">
-                    <option class="pilot-option-element">Jax Fernandez</option>
-                    <option class="pilot-option-element">Lt. Archie Anderson</option>
-                    <option class="pilot-option-element">Van Vertigo</option>
-                    <option class="pilot-option-element">TSGT. Hilda McMahon</option>
-                    <option class="pilot-option-element">Fare Collins</option>
-                    <option class="pilot-option-element">Lt. Sven Bergman</option>
-                    <option class="pilot-option-element">1st Lt. Havoc Moua</option>
-                    <option class="pilot-option-element">Ash Buchanan</option>
-                    <option class="pilot-option-element">Lance Hamill</option>
-                    <option class="pilot-option-element">Capt. Theodosia Costello</option>
-                    <option class="pilot-option-element">1st Lt. Dane X</option>
-                    <option class="pilot-option-element">Dario Stardancer</option>
-                    <option class="pilot-option-element">Elena Zane</option>
-                    <option class="pilot-option-element">Lt. Sophia Saleh</option>
-                    <option class="pilot-option-element">Capt. Alice Drummond</option>
-                    <option class="pilot-option-element">B3-47L</option>
-                </select>
-                <br>
-                <span id="player1Name" class="player-name-element" contenteditable="true">Victor</span>
-                <br>
-                <label id="player-1-hp-label" class="hp-elements">HIT POINTS:</label><input id="player_1_hp"
-                    class="hp-elements hp-input" type="number" value=15>
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-dark top-navbar bg-dark">
+        <a class="navbar-brand" href="#">Overlay Settings</a>
+        <form class="form-inline my-2 my-lg-0">
+            <a class="btn btn-outline-success my-2 my-sm-0 bg-light" type="submit" target="_blanK"
+                href="http://localhost:3000/live">View Live</a>
+        </form>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-white bg-dark mb-3 mt-2">
+                    <div class="card-body">
+                        <h1>Player 1 HP Remaining</h1>
+                        <form class="form-inline">
+                            <input type="number" class="form-control mb-2 mr-sm-2 text-center hp-input" value="15" onchange="emitPlayerHPUpdate(1, this.value)">
+                        </form>
+                    </div>                    
+                    <div class="card-body border-top">
+                        <h2>Player 1 Name</h2>
+                        <form class="form-inline">
+                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Player 1 name">
+                            <button type="button" class="btn btn-primary mb-2" onclick="emitPlayerNameUpdate(1, this.previousSibling.previousSibling.value)">Save</button>
+                        </form>
+                    </div>
+                    <div class="card-body border-top">
+                        <h2>Player 1 TTS String</h2>
+                        <form class="form-inline">
+                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Player 1 TTS String">
+                            <button type="button" class="btn btn-primary mb-2" onclick="emitPlayerTTSStringUpdate(1, this.previousSibling.previousSibling.value)">Save</button>
+                        </form>
+                        <small class="form-text text-muted">Paste the TTS String for this player's deck from the <a
+                            href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
+                    </div>
+                    <div class="card-body border-top">
+                        <div class="form-group">
+                            <h2>Player 1 Pilot</label><a class="btn btn-primary btn-sm toggle-card-button float-right" onclick="emitTogglePilotCard(this.nextSibling.nextSibling.value)">Toggle Card</a>
+                            <select class="form-control unit-select" onclick="emitPlayerPilotUpdate(1, this.value)">
+                                <option class="pilot-option-element">Jax Fernandez</option>
+                                <option class="pilot-option-element">Lt. Archie Anderson</option>
+                                <option class="pilot-option-element">Van Vertigo</option>
+                                <option class="pilot-option-element">TSGT. Hilda McMahon</option>
+                                <option class="pilot-option-element">Fare Collins</option>
+                                <option class="pilot-option-element">Lt. Sven Bergman</option>
+                                <option class="pilot-option-element">1st Lt. Havoc Moua</option>
+                                <option class="pilot-option-element">Ash Buchanan</option>
+                                <option class="pilot-option-element">Lance Hamill</option>
+                                <option class="pilot-option-element">Capt. Theodosia Costello</option>
+                                <option class="pilot-option-element">1st Lt. Dane X</option>
+                                <option class="pilot-option-element">Dario Stardancer</option>
+                                <option class="pilot-option-element">Elena Zane</option>
+                                <option class="pilot-option-element">Lt. Sophia Saleh</option>
+                                <option class="pilot-option-element">Capt. Alice Drummond</option>
+                                <option class="pilot-option-element">B3-47L</option>
+                            </select>                        
+                        </div>
+                    </div>
+                    <div class="card-body border-top">
+                        <div class="form-group">
+                            <h2>Player 1 Battle Cards</label><a class="btn btn-primary btn-sm toggle-card-button float-right" onclick="emitToggleBattleCard(this.nextSibling.nextSibling.value)">Toggle Card</a>
+                            <select id="player1BattleCardSelect" class="form-control unit-select"></select>                        
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Settings button -->
-            <div id="settingsButton" class="btn" data-toggle="modal" data-target="#settingsModal">&#9881;</div>
 
-            <!-- Right elements for player 2 -->
-            <div class="text-right">
-                <select id="player2PilotSelect" class="pilot-select-element text-center"
-                    onchange="updatePlayerPilotCard(2)">
-                    <option class="pilot-option-element">Jax Fernandez</option>
-                    <option class="pilot-option-element">Lt. Archie Anderson</option>
-                    <option class="pilot-option-element">Van Vertigo</option>
-                    <option class="pilot-option-element">TSGT. Hilda McMahon</option>
-                    <option class="pilot-option-element">Fare Collins</option>
-                    <option class="pilot-option-element">Lt. Sven Bergman</option>
-                    <option class="pilot-option-element">1st Lt. Havoc Moua</option>
-                    <option class="pilot-option-element">Ash Buchanan</option>
-                    <option class="pilot-option-element">Lance Hamill</option>
-                    <option class="pilot-option-element">Capt. Theodosia Costello</option>
-                    <option class="pilot-option-element">1st Lt. Dane X</option>
-                    <option class="pilot-option-element">Dario Stardancer</option>
-                    <option class="pilot-option-element">Elena Zane</option>
-                    <option class="pilot-option-element">Lt. Sophia Saleh</option>
-                    <option class="pilot-option-element">Capt. Alice Drummond</option>
-                    <option class="pilot-option-element">B3-47L</option>
-                </select>
-                <br>
-                <span id="player2Name" class="player-name-element" contenteditable="true">Linden</span>
-                <br>
-                <label class="hp-elements text-right">HIT POINTS:</label><input id="player_2_hp"
-                    class="hp-elements hp-input text-right" type="number" value=15>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Bottom player battle cards navbar -->
-
-    <nav id="battleCardNavbar" class="navbar fixed-bottom">
-
-        <div>
-            <img id="player1BattleCardImg" onclick="toggleBattleCardImgSize(this)" class="battle-card-img" src="">
-            <br>
-            <img class="battle-card-label-img" src="/img/cards-icon.png">
-            <br>
-            <select id="player1BattleCardSelect" class="battle-card-select-element text-center"
-                onchange="updatePlayerBattleCard(1)">
-                <option>...</option>
-            </select>
-        </div>
-
-        <div>
-            <img id="player2BattleCardImg" onclick="toggleBattleCardImgSize(this)" class="battle-card-img" src="">
-            <br>
-            <img class="battle-card-label-img" src="/img/cards-icon.png">
-            <br>
-            <select id="player2BattleCardSelect" class="battle-card-select-element text-center"
-                onchange="updatePlayerBattleCard(2)">
-                <option>...</option>
-            </select>
-        </div>
+            <div class="col-md-4 text-center p-xs-3 p-md-2 p-lg-1"></div>
 
 
-    </nav>
-
-    <!-- Bottom player pilot cards navbar -->
-
-    <nav class="navbar fixed-bottom">
-        <div class="container-fluid">
-            <img id="player1PilotCardImg" onclick="togglePilotImgSize(this)" class="pilot-card-img"
-                src="https://www.aerodomebuilder.com/images/pilots/AEF005.png">
-            <img id="player2PilotCardImg" onclick="togglePilotImgSize(this)" class="pilot-card-img"
-                src="https://www.aerodomebuilder.com/images/pilots/AEF005.png">
-        </div>
-    </nav>
-
-    <!-- Modal -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Import Decks (STILL UNDER DEVELOPMENT)</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <form>
+            <div class="col-md-4">
+                <div class="card text-white bg-dark mb-3 mt-2">
+                    <div class="card-body">
+                        <h1>Player 2 HP Remaining</h1>
+                        <form class="form-inline">
+                            <input type="number" class="form-control mb-2 mr-sm-2 text-center hp-input" value="15" onchange="emitPlayerHPUpdate(2, this.value)">
+                        </form>
+                    </div>                    
+                    <div class="card-body border-top">
+                        <h2>Player 2 Name</h2>
+                        <form class="form-inline">
+                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Player 2 name">
+                            <button type="button" class="btn btn-primary mb-2" onclick="emitPlayerNameUpdate(2, this.previousSibling.previousSibling.value)">Save</button>
+                        </form>
+                    </div>
+                    <div class="card-body border-top">
+                        <h2>Player 2 TTS String</h2>
+                        <form class="form-inline">
+                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Player 2 TTS String">
+                            <button type="button" class="btn btn-primary mb-2" onclick="emitPlayerTTSStringUpdate(2, this.previousSibling.previousSibling.value)">Save</button>
+                        </form>
+                        <small class="form-text text-muted">Paste the TTS String for this player's deck from the <a
+                            href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
+                    </div>
+                    <div class="card-body border-top">
                         <div class="form-group">
-                            <label for="player1BuilderString">Player 1 TTS String</label>
-                            <input type="text" class="form-control" id="player1BuilderString"
-                                placeholder="Enter Player 1 TTS String">
-                            <small class="form-text text-muted">Paste the TTS String for Player 1's deck from the <a
-                                    href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
+                            <h2>Player 2 Pilot</label><a class="btn btn-primary btn-sm toggle-card-button float-right" onclick="emitTogglePilotCard(this.nextSibling.nextSibling.value)">Toggle Card</a>
+                            <select class="form-control unit-select" onclick="emitPlayerPilotUpdate(2, this.value)">
+                                <option class="pilot-option-element">Jax Fernandez</option>
+                                <option class="pilot-option-element">Lt. Archie Anderson</option>
+                                <option class="pilot-option-element">Van Vertigo</option>
+                                <option class="pilot-option-element">TSGT. Hilda McMahon</option>
+                                <option class="pilot-option-element">Fare Collins</option>
+                                <option class="pilot-option-element">Lt. Sven Bergman</option>
+                                <option class="pilot-option-element">1st Lt. Havoc Moua</option>
+                                <option class="pilot-option-element">Ash Buchanan</option>
+                                <option class="pilot-option-element">Lance Hamill</option>
+                                <option class="pilot-option-element">Capt. Theodosia Costello</option>
+                                <option class="pilot-option-element">1st Lt. Dane X</option>
+                                <option class="pilot-option-element">Dario Stardancer</option>
+                                <option class="pilot-option-element">Elena Zane</option>
+                                <option class="pilot-option-element">Lt. Sophia Saleh</option>
+                                <option class="pilot-option-element">Capt. Alice Drummond</option>
+                                <option class="pilot-option-element">B3-47L</option>
+                            </select>                        
                         </div>
-
-                        <br>
-
+                    </div>
+                    <div class="card-body border-top">
                         <div class="form-group">
-                            <label for="player2BuilderString">Player 2 TTS String</label>
-                            <input type="text" class="form-control" id="player2BuilderString"
-                                placeholder="Enter Player 2 TTS String">
-                            <small class="form-text text-muted">Paste the TTS String for Player 2's deck from the <a
-                                    href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
+                            <h2>Player 2 Battle Cards</label><a class="btn btn-primary btn-sm toggle-card-button float-right" onclick="emitToggleBattleCard(this.nextSibling.nextSibling.value)">Toggle Card</a>
+                            <select id="player2BattleCardSelect" class="form-control unit-select"></select>                        
                         </div>
-                    </form>
-
-                    <br>
-                    <small>Tip: Click on a card image to toggle it from full-size to small-size.</small>
-                    <br>
-                    <small>Tip: Click on the player name text (e.g., "Linden") to edit it.</small>
-                    <br>
-                    <small>Tip: Use your keyboard arrow keys to scroll through the battle card drop-down and select a
-                        card to display, or select the "..." option to hide the battle card completely.</small>
-                    <br>
-                    <br>
-                    <a class="small" target="_blank" href="https://github.com/norbyyt1300/YAAO">Click here to view
-                        and/or contribute to source code for this overlay!</a>
-
+                    </div>
                 </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="parseAndApplyPlayerDecks()">Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-
             </div>
         </div>
     </div>
 
+
+
+    <!-- Web socket link to settings page -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io();
 
-        var messages = document.getElementById('messages');
-        var form = document.getElementById('form');
-        var input = document.getElementById('input');
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            if (input.value) {
-                socket.emit('update', input.value);
-                input.value = '';
-            }
+        socket.on('update', function (update) {
+            console.log('Socket update received from settings page: ', update);
         });
 
-        socket.on('update', function (msg) {
-            var item = document.createElement('li');
-            item.textContent = msg;
-            messages.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
-        });
+        function emitPlayerHPUpdate(playerNumber, newValue) {
+            socket.emit('update', ["HP", playerNumber, newValue]);
+        }
+
+        function emitPlayerNameUpdate(playerNumber, newName) {
+            socket.emit('update', ["Name", playerNumber, newName]);
+        }
+
+        function emitPlayerTTSStringUpdate(playerNumber, newTTSString) {
+            socket.emit('update', ["TTSString", playerNumber, newTTSString]);
+        }
+
+        function emitPlayerPilotUpdate(playerNumber, newPilotName) {
+            socket.emit('update', ["Pilot", playerNumber, newPilotName]);
+        }
+
+        function emitTogglePilotCard(pilotName) {
+            socket.emit('update', ["TogglePilotCard", 0, pilotName]);
+        }
+
+        function emitToggleBattleCard(cardName) {
+            socket.emit('update', ["ToggleBattleCard",0, cardName]);
+        }
+
+
     </script>
 
 </body>
