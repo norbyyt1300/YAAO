@@ -1,16 +1,23 @@
 # YAAO
 Yet Another Aerodome Overlay!
 
-1. Add this page as a browser source in OBS:
+1. Install NodeJs from the following link:
 
-https://norbyyt1300.github.io/YAAO/
+    https://nodejs.org/en/download/current
 
-(Also click above to see the live example of this overlay)
+2. Open a command prompt to the source code folder, then install the web server and socket connection prerequisites using the below commands:
 
-2. In OBS, click to "Interact" with this browser source, then click each player's name to edit the player name, click each pilot name to select the pilot, and click the HP to set the HP value. Enjoy!
+    cmd.exe /c npm.cmd install express@4
+    cmd.exe /c npm.cmd install socket.io
 
-3. To access an (in-progress) settings menu to allow squad imports, click the tiny gear icon in the very top-middle of the overlay.
+3. Run the overlay web server using the below command (from within the project folder):
 
-Note: you can click on a pilot card to toggle it between high and low visibility!
+    node index.js
 
-And YES, there will absolutely be a second version coming soon that will have a front-end live page and a back-end settings page...
+4. Add the following local web server URL to OBS as a browser source:
+
+    http://localhost:3000/live
+
+5. Configure your stream settings via opening a web browser to the following settings page:
+
+    http://localhost:3000/
