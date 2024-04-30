@@ -21,7 +21,7 @@
 
     <link rel="stylesheet" type="text/css" href="/css/style-live.css">
 
-    <script src="/js/scripts.js"></script>
+    <script src="/js/scripts-live.js"></script>
 
 </head>
 
@@ -34,58 +34,20 @@
 
             <!-- Left elements for player 1 -->
             <div>
-                <select id="player1PilotSelect" class="pilot-select-element text-center"
-                    onchange="updatePlayerPilotCard(1)">
-                    <option class="pilot-option-element">Jax Fernandez</option>
-                    <option class="pilot-option-element">Lt. Archie Anderson</option>
-                    <option class="pilot-option-element">Van Vertigo</option>
-                    <option class="pilot-option-element">TSGT. Hilda McMahon</option>
-                    <option class="pilot-option-element">Fare Collins</option>
-                    <option class="pilot-option-element">Lt. Sven Bergman</option>
-                    <option class="pilot-option-element">1st Lt. Havoc Moua</option>
-                    <option class="pilot-option-element">Ash Buchanan</option>
-                    <option class="pilot-option-element">Lance Hamill</option>
-                    <option class="pilot-option-element">Capt. Theodosia Costello</option>
-                    <option class="pilot-option-element">1st Lt. Dane X</option>
-                    <option class="pilot-option-element">Dario Stardancer</option>
-                    <option class="pilot-option-element">Elena Zane</option>
-                    <option class="pilot-option-element">Lt. Sophia Saleh</option>
-                    <option class="pilot-option-element">Capt. Alice Drummond</option>
-                    <option class="pilot-option-element">B3-47L</option>
-                </select>
+                <span id="playerPilotElement1" class="pilot-label-element text-left">Pilot 1</span>
                 <br>
-                <span id="player1Name" class="player-name-element" >Victor</span>
+                <span id="playerNameSpan1" class="player-name-element" >Player 1</span>
                 <br>
-                <label id="player-1-hp-label" class="hp-elements">HIT POINTS:</label><input id="player_1_hp"
-                    class="hp-elements hp-input text-center" type="number" value=15 readonly>
+                <label id="hpLabelPlayer1" class="hp-elements">HIT POINTS:</label>
             </div>
 
             <!-- Right elements for player 2 -->
             <div class="text-right">
-                <select id="player2PilotSelect" class="pilot-select-element text-center"
-                    onchange="updatePlayerPilotCard(2)">
-                    <option class="pilot-option-element">Jax Fernandez</option>
-                    <option class="pilot-option-element">Lt. Archie Anderson</option>
-                    <option class="pilot-option-element">Van Vertigo</option>
-                    <option class="pilot-option-element">TSGT. Hilda McMahon</option>
-                    <option class="pilot-option-element">Fare Collins</option>
-                    <option class="pilot-option-element">Lt. Sven Bergman</option>
-                    <option class="pilot-option-element">1st Lt. Havoc Moua</option>
-                    <option class="pilot-option-element">Ash Buchanan</option>
-                    <option class="pilot-option-element">Lance Hamill</option>
-                    <option class="pilot-option-element">Capt. Theodosia Costello</option>
-                    <option class="pilot-option-element">1st Lt. Dane X</option>
-                    <option class="pilot-option-element">Dario Stardancer</option>
-                    <option class="pilot-option-element">Elena Zane</option>
-                    <option class="pilot-option-element">Lt. Sophia Saleh</option>
-                    <option class="pilot-option-element">Capt. Alice Drummond</option>
-                    <option class="pilot-option-element">B3-47L</option>
-                </select>
+                <span id="playerPilotElement2" class="pilot-label-element text-right">Pilot 2</span>
                 <br>
-                <span id="player2Name" class="player-name-element" >Linden</span>
+                <span id="playerNameSpan2" class="player-name-element" >Player 2</span>
                 <br>
-                <label class="hp-elements text-right">HIT POINTS:</label><input id="player_2_hp"
-                    class="hp-elements hp-input text-center" type="number" value=15 readonly>
+                <label id="hpLabelPlayer2" class="hp-elements">HIT POINTS:</label>
             </div>
         </div>
     </nav>
@@ -95,25 +57,11 @@
     <nav id="battleCardNavbar" class="navbar fixed-bottom">
 
         <div>
-            <img id="player1BattleCardImg" onclick="toggleBattleCardImgSize(this)" class="battle-card-img" src="">
-            <br>
-            <img class="battle-card-label-img" src="/img/cards-icon.png">
-            <br>
-            <select id="player1BattleCardSelect" class="battle-card-select-element text-center"
-                onchange="updatePlayerBattleCard(1)">
-                <option>...</option>
-            </select>
+            <img id="battleCardImgPlayer1" class="battle-card-img" src="">
         </div>
 
         <div>
-            <img id="player2BattleCardImg" onclick="toggleBattleCardImgSize(this)" class="battle-card-img" src="">
-            <br>
-            <img class="battle-card-label-img" src="/img/cards-icon.png">
-            <br>
-            <select id="player2BattleCardSelect" class="battle-card-select-element text-center"
-                onchange="updatePlayerBattleCard(2)">
-                <option>...</option>
-            </select>
+            <img id="battleCardImgPlayer2" class="battle-card-img" src="">
         </div>
 
 
@@ -123,64 +71,18 @@
 
     <nav class="navbar fixed-bottom">
         <div class="container-fluid">
-            <img id="player1PilotCardImg" onclick="togglePilotImgSize(this)" class="pilot-card-img"
+            <img id="pilotCardImgPlayer1" class="pilot-card-img"
                 src="https://www.aerodomebuilder.com/images/pilots/AEF005.png">
-            <img id="player2PilotCardImg" onclick="togglePilotImgSize(this)" class="pilot-card-img"
+            <img id="pilotCardImgPlayer2" class="pilot-card-img"
                 src="https://www.aerodomebuilder.com/images/pilots/AEF005.png">
         </div>
     </nav>
 
-    <!-- Modal -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-dialog modal-dialog-centered">
+    <!-- Card image Modal -->
+    <div id="cardImageModal" class="modal">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Import Decks (STILL UNDER DEVELOPMENT)</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <form>
-                        <div class="form-group">
-                            <label for="player1BuilderString">Player 1 TTS String</label>
-                            <input type="text" class="form-control" id="player1BuilderString"
-                                placeholder="Enter Player 1 TTS String">
-                            <small class="form-text text-muted">Paste the TTS String for Player 1's deck from the <a
-                                    href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
-                        </div>
-
-                        <br>
-
-                        <div class="form-group">
-                            <label for="player2BuilderString">Player 2 TTS String</label>
-                            <input type="text" class="form-control" id="player2BuilderString"
-                                placeholder="Enter Player 2 TTS String">
-                            <small class="form-text text-muted">Paste the TTS String for Player 2's deck from the <a
-                                    href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
-                        </div>
-                    </form>
-
-                    <br>
-                    <small>Tip: Click on a card image to toggle it from full-size to small-size.</small>
-                    <br>
-                    <small>Tip: Click on the player name text (e.g., "Linden") to edit it.</small>
-                    <br>
-                    <small>Tip: Use your keyboard arrow keys to scroll through the battle card drop-down and select a
-                        card to display, or select the "..." option to hide the battle card completely.</small>
-                    <br>
-                    <br>
-                    <a class="small" target="_blank" href="https://github.com/norbyyt1300/YAAO">Click here to view
-                        and/or contribute to source code for this overlay!</a>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="parseAndApplyPlayerDecks()">Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-
+                <img id="cardImage">
             </div>
         </div>
     </div>
@@ -207,15 +109,66 @@
         }
 
         function emitTogglePilotCard(pilotName) {
-            socket.emit('update', ["TogglePilotCard", 0, pilotName]);
+            socket.emit('update', ["TogglePilotCard", 1, pilotName]);
         }
 
         function emitToggleBattleCard(cardName) {
-            socket.emit('update', ["ToggleBattleCard",0, cardName]);
+            socket.emit('update', ["ToggleBattleCard", 2, cardNumber]);
         }
         */
-        socket.on('update', function (msg) {
-            console.log(msg);
+
+        var cardImgElement = document.getElementById("cardImage");
+        var cardImgModal = document.getElementById("cardImageModal");
+
+        socket.on('update', function (update) {
+            console.log("Received update:", update);
+            var command = update[0];
+            var playerNumber = update[1];    
+            switch (command) {
+                case "HP":  
+                    var targetElementId = "hpLabelPlayer" + playerNumber;
+                    document.getElementById(targetElementId).innerText = "HIT POINTS: " + update[2];
+                    break;
+                case "Name":
+                    var targetElementId = "playerNameSpan" + playerNumber;
+                    document.getElementById(targetElementId).innerText = update[2];
+                    break;
+                case "Pilot":
+                    var targetElementId = "playerPilotElement" + playerNumber;
+                    document.getElementById(targetElementId).innerText = update[2];
+                    updatePlayerPilotCard(playerNumber);
+                    break;
+                case "TogglePilotCard":
+                    var pilotNameElement = "playerPilotElement" + playerNumber;
+                    var selectedPilotName = document.getElementById(pilotNameElement).innerText.trim();
+                    cardImgElement.src = getPilotImgURLForPilotName(selectedPilotName);
+                    $('#cardImageModal').modal('toggle');
+                    break;
+                case "ToggleSmallPilotCard":
+                    var pilotCardImageElement = document.getElementById("pilotCardImgPlayer" + playerNumber);
+                    var newHeight = "250px";
+                    if (pilotCardImageElement.style.height == newHeight) {
+                        newHeight = "25px";
+                    }
+                    console.log("Setting the height for " + pilotCardImageElement.id + " to " + newHeight);
+                    pilotCardImageElement.style.height = newHeight;
+                    break;
+                case "TTSString":
+                var targetElementId = "playerPilotElement" + playerNumber;
+                    var cardArray = update[2].split("\\ ");
+                    console.log(cardArray);
+                    var pilotCode = cardArray.filter((cardCode) => cardCode.startsWith("AEF0"))[0].trim();
+                    var selectedPilotName = convertPilotCodeToPilotName(pilotCode);
+                    console.log("New pilot name: ", selectedPilotName);
+                    document.getElementById(targetElementId).innerText = selectedPilotName;
+                    updatePlayerPilotCard(playerNumber);
+                    break;
+                case "ToggleBattleCard":
+                    console.log("Received new battle card image: ", update[2]);
+                    cardImgElement.src = update[2];
+                    $('#cardImageModal').modal('toggle');
+                    break;                    
+            }
         });
     </script>
 

@@ -4,63 +4,34 @@ var BUILDER_IMAGES_URL_PREFIX = "https://www.aerodomebuilder.com/images/";
 
 // -----------------------------------------------------------------------------------------------------
 
-// When a card img is clicked, either make it very transparent or not very transparent
-function toggleCardImgTransparency(element) {
-    // Assume a default should be 0.9
-    var newOpacity = 0.9;
-    if (element.style.opacity == 0.9) {
-        newOpacity = 0.1
-    }
-    console.log("Setting the opacity for " + element.id + " to " + newOpacity);
-    element.style.opacity = newOpacity;
-}
-
-// BATTLE CARD When a card img is clicked, either make it very small or full size
-function toggleBattleCardImgSize(element) {
-    var newHeight = "400px";
-    if (element.style.height == newHeight) {
-        newHeight = "40px";
-    }
-    console.log("Setting the height for " + element.id + " to " + newHeight);
-    element.style.height = newHeight;
-}
-
-// PILOT CARD When a card img is clicked, either make it very small or full size
-function togglePilotImgSize(element) {
-    var newHeight = "250px";
-    if (element.style.height == newHeight) {
-        newHeight = "25px";
-    }
-    console.log("Setting the height for " + element.id + " to " + newHeight);
-    element.style.height = newHeight;
-}
-
-// -----------------------------------------------------------------------------------------------------
-
 // When the select changes, update the player pilot card
 function updatePlayerPilotCard(playerNumber) {
 
     // Figure out which player we're updating
-    var selectElementId = "player1PilotSelect";
-    var pilotImgElementId = "player1PilotCardImg";
-    if (playerNumber == 2) {
-        selectElementId = "player2PilotSelect";
-        pilotImgElementId = "player2PilotCardImg";
-    }
+    var pilotNameElement = "playerPilotElement" + playerNumber;
+    var pilotImgElementId = "pilotCardImgPlayer" + playerNumber;
 
-    console.log("Updating " + pilotImgElementId + " based on change to " + selectElementId);
+    console.log("Updating " + pilotImgElementId);
 
     // Get the selected pilot
-    var selectedPilot = document.getElementById(selectElementId).value.trim();
-    console.log("New pilot selection: " + selectedPilot);
+    var selectedPilotName = document.getElementById(pilotNameElement).innerText.trim();
+    console.log("New pilot selection: " + selectedPilotName);
 
     // Figure out the new URL for the pilot image
+    var newPilotImgURL = getPilotImgURLForPilotName(selectedPilotName);
+
+    // Apply this new URL to the img element
+    console.log("Applying new URL for that pilot: " + newPilotImgURL);
+    document.getElementById(pilotImgElementId).src = newPilotImgURL;
+
+}
+
+function getPilotImgURLForPilotName(selectedPilotName) {
     var newPilotImgURL = "";
 
-    // Thank you, builder, for hosting all of these!
     var PILOT_IMAGE_URL_PREFIX = BUILDER_IMAGES_URL_PREFIX + "pilots/";
-
-    switch (selectedPilot) {
+    console.log("Looking up pilot image for selected pilot", selectedPilotName);
+    switch (selectedPilotName) {
         case "Jax Fernandez":
             newPilotImgURL = PILOT_IMAGE_URL_PREFIX + "AEF005.png";
             break;
@@ -112,77 +83,7 @@ function updatePlayerPilotCard(playerNumber) {
         default:
             newPilotImgURL = "Aerodome-Logo-800.png";
     }
-
-    // Apply this new URL to the img element
-    console.log("Applying new URL for that pilot: " + newPilotImgURL);
-    document.getElementById(pilotImgElementId).src = newPilotImgURL;
-
-}
-
-// -----------------------------------------------------------------------------------------------------
-
-function parseAndApplyPlayerDecks() {
-    console.log("Now parsing player decks!");
-
-    // Read in each deck TTS string
-
-    /* Example strings:
-
-    AEF001\ RH1002\ RH1012\ RH1020\ RH1028\ RH1034\ RH1043\ RH1051\ RH1096\ RH1103\ AUX1007\ AUX1008\ AUX1009
-
-    AEF008\ RH1010\ RH1017\ RH1077\ RH1080\ RH1041\ RH1092\ RH1093\ RH1095\ RH1101\ 
-
-    */
-
-    var player1TTSString = document.getElementById("player1BuilderString").value.trim();
-    var player2TTSString = document.getElementById("player2BuilderString").value.trim();
-    console.log("Player TTS strings: ", player1TTSString, player2TTSString);
-
-    // Split the string into tokens
-    var player1CardArray = player1TTSString.split("\\ ");
-    var player2CardArray = player2TTSString.split("\\ ");
-    console.log("Player card arrays: ", player1CardArray, player2CardArray);
-
-    // Extract from the tokens the pilot code
-    var player1PilotCode = player1CardArray.filter((cardCode) => cardCode.startsWith("AEF0"))[0].trim();
-    var player2PilotCode = player2CardArray.filter((cardCode) => cardCode.startsWith("AEF0"))[0].trim();
-    console.log("Player pilot codes: ", player1PilotCode, player2PilotCode);
-
-    // Use that pilot code to update the pilot name and pilot card image
-    var player1PilotName = convertPilotCodeToPilotName(player1PilotCode);
-    var player2PilotName = convertPilotCodeToPilotName(player2PilotCode);
-    console.log("Converted codes to names. Player pilot names: ", player1PilotName, player2PilotName);
-
-    // Set the pilot select element values to be these new pilot names
-    document.getElementById("player1PilotSelect").value = player1PilotName;
-    document.getElementById("player2PilotSelect").value = player2PilotName;
-    updatePlayerPilotCard(1);
-    updatePlayerPilotCard(2);
-
-    // For the rest of the 1 - 9 cards, save them to an array
-    var player1BattleCards = player1CardArray.filter((cardCode) => cardCode.startsWith("RH1"));
-    var player2BattleCards = player2CardArray.filter((cardCode) => cardCode.startsWith("RH1"));
-    console.log("Player battle card decks: ", player1BattleCards, player2BattleCards);
-
-    // Update the card viewer select to be able to show those cards
-    var player1BattleCardSelectElement = document.getElementById("player1BattleCardSelect");
-    for (var i = 1; i < 10; i++) {
-        const option = document.createElement("option");
-        option.text = i;
-        option.value = player1BattleCards[i - 1].replace("\\", "").replace("\\", "");
-        option.classList = "battle-card-option-element";
-        player1BattleCardSelectElement.appendChild(option);
-    }
-    var player2BattleCardSelectElement = document.getElementById("player2BattleCardSelect");
-    for (var i = 1; i < 10; i++) {
-        const option = document.createElement("option");
-        option.text = i;
-        option.value = player2BattleCards[i - 1].replace("\\", "").replace("\\", "");
-        option.classList = "battle-card-option-element";
-        player2BattleCardSelectElement.appendChild(option);
-    }
-
-    // Also allow toggling a given card from normal to dazed
+    return newPilotImgURL;
 }
 
 function convertPilotCodeToPilotName(pilotCode) {
