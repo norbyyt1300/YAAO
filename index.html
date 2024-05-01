@@ -17,8 +17,6 @@
 
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 
-    <script src="/js/scripts.js"></script>
-
 </head>
 
 <body class="m-0 border-0 m-0 border-0 bg-secondary">
@@ -26,6 +24,7 @@
     <!-- Top Navbar -->
     <nav class="navbar navbar-dark top-navbar bg-dark">
         <a class="navbar-brand" href="#">Overlay Settings</a>
+        <button type="button" class="btn btn-danger" onclick="emitHideCurrentlyDisplayedCard()">Hide Current Card</button>
         <form class="form-inline my-2 my-lg-0">
             <a class="btn btn-outline-success my-2 my-sm-0 bg-light" type="submit" target="_blanK"
                 href="http://localhost:3000/live">View Live</a>
@@ -33,199 +32,265 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+
+            <div class="col-md-5">
                 <div class="card text-white bg-dark mb-3 mt-2">
-                    <div class="card-body">
-                        <h1>Player 1 HP Remaining</h1>
-                        <form class="form-inline">
-                            <input type="number" class="form-control mb-2 mr-sm-2 text-center hp-input" value="15"
+                    <div class="card-body row mb-3">
+                        <label class="col-sm-3 col-form-label col-form-label-lg">Player 1 Hit Points</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-lg text-center" value="15"
                                 onchange="emitPlayerHPUpdate(1, this.value)">
-                        </form>
+                        </div>
                     </div>
-                    <div class="card-body border-top">
-                        <h2>Player 1 Name</h2>
-                        <form class="form-inline">
-                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Player 1 name">
-                            <button type="button" class="btn btn-primary mb-2"
-                                onclick="emitPlayerNameUpdate(1, this.previousSibling.previousSibling.value)">Save</button>
-                        </form>
+                    <div class="card-body row mb-3">
+                        <label class="col-sm-3 col-form-label col-form-label-lg">Player 1 Name</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control form-control-lg" placeholder="Enter Player 1 name"
+                                onchange="emitPlayerNameUpdate(1, this.value)">
+                        </div>
                     </div>
-                    <div class="card-body border-top">
-                        <h2>Player 1 TTS String</h2>
-                        <form class="form-inline">
-                            <input type="text" class="form-control mb-2 mr-sm-2"
+                    <div class="card-body row mb-3 ">
+                        <label class="col-sm-3 col-form-label col-form-label-lg">Player 1 TTS String</label>
+                        <div class="col-sm-7">
+                            <input id="TTSStringInputPlayer1" type="text" class="form-control form-control-lg"
                                 placeholder="Enter Player 1 TTS String">
-                            <button type="button" class="btn btn-primary mb-2"
-                                onclick="emitPlayerTTSStringUpdate(1, this.previousSibling.previousSibling.value)">Save</button>
-                        </form>
-                        <small class="form-text text-muted">Paste the TTS String for this player's deck from the <a
-                                href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
-                    </div>
-                    <div class="card-body border-top">
-                        <div class="form-group">
-                            <h2>Player 1 Pilot</label>
-                                <a class="btn btn-primary btn-sm toggle-card-button float-right" onclick="emitTogglePilotCard(1, this.nextSibling.nextSibling.nextSibling.value)">Toggle Card</a>
-                                <a class="btn btn-secondary btn-sm toggle-card-button float-right" onclick="emitToggleSmallPilotCard(1, this.nextSibling.nextSibling.value)">Toggle Small Pilot Card</a>
-                                <select id="pilotSelectPlayer1" class="form-control unit-select" onclick="emitPlayerPilotUpdate(1, this.value)">
-                                    <option class="pilot-option-element">Jax Fernandez</option>
-                                    <option class="pilot-option-element">Lt. Archie Anderson</option>
-                                    <option class="pilot-option-element">Van Vertigo</option>
-                                    <option class="pilot-option-element">TSGT. Hilda McMahon</option>
-                                    <option class="pilot-option-element">Fare Collins</option>
-                                    <option class="pilot-option-element">Lt. Sven Bergman</option>
-                                    <option class="pilot-option-element">1st Lt. Havoc Moua</option>
-                                    <option class="pilot-option-element">Ash Buchanan</option>
-                                    <option class="pilot-option-element">Lance Hamill</option>
-                                    <option class="pilot-option-element">Capt. Theodosia Costello</option>
-                                    <option class="pilot-option-element">1st Lt. Dane X</option>
-                                    <option class="pilot-option-element">Dario Stardancer</option>
-                                    <option class="pilot-option-element">Elena Zane</option>
-                                    <option class="pilot-option-element">Lt. Sophia Saleh</option>
-                                    <option class="pilot-option-element">Capt. Alice Drummond</option>
-                                    <option class="pilot-option-element">B3-47L</option>
-                                </select>
+                            <small class="form-text text-muted">Paste the TTS String for this player's deck from the <a
+                                    href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-warning btn-lg mb-2"
+                                onclick="emitPlayerTTSStringUpdate(1)">Save</button>
                         </div>
                     </div>
-                    <div class="card-body border-top">
-                        <div class="form-group">
-                            <h2>Player 1 Battle Cards</h2>
-                            <div id="battleCardsPlayer1"></div>
+                    <div class="card-body row mb-3 ">
+                        <label class="col-sm-3 col-form-label col-form-label-lg">Player 1 Pilot</label>
+                        <div class="col-sm-3">
+                            <select id="pilotSelectPlayer1" class="form-control"
+                                onclick="emitPlayerPilotUpdate(1, this.value)">
+                                <option class="pilot-option-element">Jax Fernandez</option>
+                                <option class="pilot-option-element">Lt. Archie Anderson</option>
+                                <option class="pilot-option-element">Van Vertigo</option>
+                                <option class="pilot-option-element">TSGT. Hilda McMahon</option>
+                                <option class="pilot-option-element">Fare Collins</option>
+                                <option class="pilot-option-element">Lt. Sven Bergman</option>
+                                <option class="pilot-option-element">1st Lt. Havoc Moua</option>
+                                <option class="pilot-option-element">Ash Buchanan</option>
+                                <option class="pilot-option-element">Lance Hamill</option>
+                                <option class="pilot-option-element">Capt. Theodosia Costello</option>
+                                <option class="pilot-option-element">1st Lt. Dane X</option>
+                                <option class="pilot-option-element">Dario Stardancer</option>
+                                <option class="pilot-option-element">Elena Zane</option>
+                                <option class="pilot-option-element">Lt. Sophia Saleh</option>
+                                <option class="pilot-option-element">Capt. Alice Drummond</option>
+                                <option class="pilot-option-element">B3-47L</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-primary toggle-card-button float-right"
+                                onclick="emitTogglePilotCard(1)">Show
+                                Card</a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-secondary toggle-card-button float-right"
+                                onclick="emitToggleSmallPilotCard(1)">Hide Small
+                                Card</a>
+                        </div>
+                    </div>
+                    <div class="card-body row mb-3">
+                        <label class="col-sm-12 col-form-label col-form-label-lg">Player 1 Battle Cards</label>
+                        <div class="btn-group ms-1" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 1:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard1Player1">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard1ShowButtonPlayer1">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 2:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard2Player1">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard2ShowButtonPlayer1">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 3:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard3Player1">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard3ShowButtonPlayer1">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 4:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard4Player1">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard4ShowButtonPlayer1">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 5:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard5Player1">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard5ShowButtonPlayer1">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 6:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard6Player1">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard6ShowButtonPlayer1">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 7:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard7Player1">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard7ShowButtonPlayer1">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 8:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard8Player1">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard8ShowButtonPlayer1">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 9:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard9Player1">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard9ShowButtonPlayer1">Show Card</button>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-            <div class="col-md-4 text-center p-xs-3 p-md-2 p-lg-1"></div>
+            <div class="col-md-2">
+            </div>
 
 
-            <div class="col-md-4">
+
+            <div class="col-md-5">
                 <div class="card text-white bg-dark mb-3 mt-2">
-                    <div class="card-body">
-                        <h1>Player 2 HP Remaining</h1>
-                        <form class="form-inline">
-                            <input type="number" class="form-control mb-2 mr-sm-2 text-center hp-input" value="15"
+                    <div class="card-body row mb-3">
+                        <label class="col-sm-3 col-form-label col-form-label-lg">Player 2 Hit Points</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control form-control-lg text-center" value="15"
                                 onchange="emitPlayerHPUpdate(2, this.value)">
-                        </form>
-                    </div>
-                    <div class="card-body border-top">
-                        <h2>Player 2 Name</h2>
-                        <form class="form-inline">
-                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Player 2 name">
-                            <button type="button" class="btn btn-primary mb-2"
-                                onclick="emitPlayerNameUpdate(2, this.previousSibling.previousSibling.value)">Save</button>
-                        </form>
-                    </div>
-                    <div class="card-body border-top">
-                        <h2>Player 2 TTS String</h2>
-                        <form class="form-inline">
-                            <input type="text" class="form-control mb-2 mr-sm-2"
-                                placeholder="Enter Player 2 TTS String">
-                            <button type="button" class="btn btn-primary mb-2"
-                                onclick="emitPlayerTTSStringUpdate(2, this.previousSibling.previousSibling.value)">Save</button>
-                        </form>
-                        <small class="form-text text-muted">Paste the TTS String for this player's deck from the <a
-                                href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
-                    </div>
-                    <div class="card-body border-top">
-                        <div class="form-group">
-                            <h2>Player 2 Pilot</label>
-                                <a class="btn btn-primary btn-sm toggle-card-button float-right" onclick="emitTogglePilotCard(2, this.nextSibling.nextSibling.nextSibling.value)">Toggle Card</a>
-                                <a class="btn btn-secondary btn-sm toggle-card-button float-right" onclick="emitToggleSmallPilotCard(2, this.nextSibling.nextSibling.value)">Toggle Small Pilot Card</a>
-                                <select id="pilotSelectPlayer2" class="form-control unit-select" onclick="emitPlayerPilotUpdate(2, this.value)">
-                                    <option class="pilot-option-element">Jax Fernandez</option>
-                                    <option class="pilot-option-element">Lt. Archie Anderson</option>
-                                    <option class="pilot-option-element">Van Vertigo</option>
-                                    <option class="pilot-option-element">TSGT. Hilda McMahon</option>
-                                    <option class="pilot-option-element">Fare Collins</option>
-                                    <option class="pilot-option-element">Lt. Sven Bergman</option>
-                                    <option class="pilot-option-element">1st Lt. Havoc Moua</option>
-                                    <option class="pilot-option-element">Ash Buchanan</option>
-                                    <option class="pilot-option-element">Lance Hamill</option>
-                                    <option class="pilot-option-element">Capt. Theodosia Costello</option>
-                                    <option class="pilot-option-element">1st Lt. Dane X</option>
-                                    <option class="pilot-option-element">Dario Stardancer</option>
-                                    <option class="pilot-option-element">Elena Zane</option>
-                                    <option class="pilot-option-element">Lt. Sophia Saleh</option>
-                                    <option class="pilot-option-element">Capt. Alice Drummond</option>
-                                    <option class="pilot-option-element">B3-47L</option>
-                                </select>
                         </div>
                     </div>
-                    <div class="card-body border-top">
-                        <div class="form-group">
-                            <h2>Player 2 Battle Cards</h2>
-                            <div id="battleCardsPlayer2"></div>
+                    <div class="card-body row mb-3">
+                        <label class="col-sm-3 col-form-label col-form-label-lg">Player 2 Name</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control form-control-lg" placeholder="Enter Player 2 name"
+                                onchange="emitPlayerNameUpdate(2, this.value)">
+                        </div>
+                    </div>
+                    <div class="card-body row mb-3 ">
+                        <label class="col-sm-3 col-form-label col-form-label-lg">Player 2 TTS String</label>
+                        <div class="col-sm-7">
+                            <input id="TTSStringInputPlayer2" type="text" class="form-control form-control-lg"
+                                placeholder="Enter Player 2 TTS String">
+                            <small class="form-text text-muted">Paste the TTS String for this player's deck from the <a
+                                    href="https://www.aerodomebuilder.com/" target="_blank">Aerodome Builder</a></small>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-warning btn-lg mb-2"
+                                onclick="emitPlayerTTSStringUpdate(2)">Save</button>
+                        </div>
+                    </div>
+                    <div class="card-body row mb-3 ">
+                        <label class="col-sm-3 col-form-label col-form-label-lg">Player 2 Pilot</label>
+                        <div class="col-sm-3">
+                            <select id="pilotSelectPlayer2" class="form-control"
+                                onclick="emitPlayerPilotUpdate(2, this.value)">
+                                <option class="pilot-option-element">Jax Fernandez</option>
+                                <option class="pilot-option-element">Lt. Archie Anderson</option>
+                                <option class="pilot-option-element">Van Vertigo</option>
+                                <option class="pilot-option-element">TSGT. Hilda McMahon</option>
+                                <option class="pilot-option-element">Fare Collins</option>
+                                <option class="pilot-option-element">Lt. Sven Bergman</option>
+                                <option class="pilot-option-element">1st Lt. Havoc Moua</option>
+                                <option class="pilot-option-element">Ash Buchanan</option>
+                                <option class="pilot-option-element">Lance Hamill</option>
+                                <option class="pilot-option-element">Capt. Theodosia Costello</option>
+                                <option class="pilot-option-element">1st Lt. Dane X</option>
+                                <option class="pilot-option-element">Dario Stardancer</option>
+                                <option class="pilot-option-element">Elena Zane</option>
+                                <option class="pilot-option-element">Lt. Sophia Saleh</option>
+                                <option class="pilot-option-element">Capt. Alice Drummond</option>
+                                <option class="pilot-option-element">B3-47L</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-primary toggle-card-button float-right"
+                                onclick="emitTogglePilotCard(2)">Show
+                                Card</a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-secondary toggle-card-button float-right"
+                                onclick="emitToggleSmallPilotCard(2)">Hide Small
+                                Card</a>
+                        </div>
+                    </div>
+                    <div class="card-body row mb-3">
+                        <label class="col-sm-12 col-form-label col-form-label-lg">Player 2 Battle Cards</label>
+                        <div class="btn-group ms-1" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 1:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard1Player2">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard1ShowButtonPlayer2">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 2:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard2Player2">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard2ShowButtonPlayer2">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 3:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard3Player2">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard3ShowButtonPlayer2">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 4:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard4Player2">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard4ShowButtonPlayer2">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 5:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard5Player2">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard5ShowButtonPlayer2">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 6:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard6Player2">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard6ShowButtonPlayer2">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 7:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard7Player2">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard7ShowButtonPlayer2">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 8:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard8Player2">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard8ShowButtonPlayer2">Show Card</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="">Card 9:</button>
+                            <button type="button" class="btn btn-light battle-card-btn"
+                                id="battleCard9Player2">XXX</button>
+                            <button type="button" class="btn btn-primary" id="battleCard9ShowButtonPlayer2">Show Card</button>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
-
-
-    <!-- Web socket link to settings page -->
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        var socket = io();
-
-        socket.on('update', function (update) {
-            console.log('Socket update received from settings page: ', update);
-        });
-
-        function emitPlayerHPUpdate(playerNumber, newValue) {
-            socket.emit('update', ["HP", playerNumber, newValue]);
-        }
-
-        function emitPlayerNameUpdate(playerNumber, newName) {
-            socket.emit('update', ["Name", playerNumber, newName]);
-        }
-
-        function emitPlayerTTSStringUpdate(playerNumber, newTTSString) {
-            
-            var cardArray = newTTSString.split("\\ ");
-            var battleCardArray = cardArray.filter((cardCode) => cardCode.startsWith("RH1"));
-            console.log("Player " + playerNumber + " battle card deck: ", battleCardArray);
-
-            var pilotCode = cardArray.filter((cardCode) => cardCode.startsWith("AEF0"))[0].trim();
-            var selectedPilotName = convertPilotCodeToPilotName(pilotCode);
-            document.getElementById("pilotSelectPlayer" + playerNumber).value = selectedPilotName;
-
-            var battleCardsWrapperElement = document.getElementById("battleCardsPlayer" + playerNumber);
-            battleCardsWrapperElement.innerHTML = "";
-            for (var i = 1; i < 10; i++) {
-                const cardElement = document.createElement("a");
-                var battleCardCode = battleCardArray[i - 1].replace("\\", "").replace("\\", "");
-                var battleCardImgURL = "https://www.aerodomebuilder.com/images/battle/" + battleCardCode + ".png";
-                cardElement.innerHTML = "Card " + i + ": " + battleCardCode + "    <a class='' onclick='emitToggleBattleCard(0,\"" + battleCardImgURL + "\")'>Click to Toggle Card</a>";
-                cardElement.classList = "btn btn-info btn-sm battle-card-button";
-                battleCardsWrapperElement.appendChild(cardElement);
-                cardElement.onClick = "asdfasdf";
-            }
-
-
-            socket.emit('update', ["TTSString", playerNumber, newTTSString]);
-        }
-
-        function emitPlayerPilotUpdate(playerNumber, newPilotName) {
-            socket.emit('update', ["Pilot", playerNumber, newPilotName]);
-        }
-
-        function emitTogglePilotCard(playerNumber, pilotName) {
-            socket.emit('update', ["TogglePilotCard", playerNumber, pilotName]);
-        }
-
-        function emitToggleSmallPilotCard(playerNumber, pilotName) {
-            socket.emit('update', ["ToggleSmallPilotCard", playerNumber, ""]);
-        }
-
-        function emitToggleBattleCard(playerNumber, battleCardImgURL) {
-            socket.emit('update', ["ToggleBattleCard", playerNumber, battleCardImgURL]);
-        }
-
-
-    </script>
+    <script src="/js/scripts-common.js"></script>
+    <script src="/js/scripts.js"></script>
 
 </body>
 

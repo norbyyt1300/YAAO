@@ -30,13 +30,13 @@ body {
     max-width: 200px;
 }
 
-.card-body {
-
+.battle-card-btn {
+    width: 200px;
+    text-align: left;
 }
 
-.battle-card-button {
-    display: block;
-    text-align: left;
-    width: 250px;
-    margin-bottom: 6px;
+.btn-group {
+    margin-bottom: 10px;
+    margin-left: 30px;
+    width: 618px;
 }

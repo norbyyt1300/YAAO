@@ -1,8 +1,89 @@
-// -----------------------------------------------------------------------------------------------------
+var socket = io();
 
-var BUILDER_IMAGES_URL_PREFIX = "https://www.aerodomebuilder.com/images/";
+/*
+function emitPlayerHPUpdate(playerNumber, newValue) {
+    socket.emit('update', ["HP", playerNumber, newValue]);
+}
 
-// -----------------------------------------------------------------------------------------------------
+function emitPlayerNameUpdate(playerNumber, newName) {
+    socket.emit('update', ["Name", playerNumber, newName]);
+}
+
+function emitPlayerTTSStringUpdate(playerNumber, newTTSString) {
+    socket.emit('update', ["TTSString", playerNumber, newTTSString]);
+}
+
+function emitPlayerPilotUpdate(playerNumber, newPilotName) {
+    socket.emit('update', ["Pilot", playerNumber, newPilotName]);
+}
+
+function emitTogglePilotCard(pilotName) {
+    socket.emit('update', ["TogglePilotCard", 1, pilotName]);
+}
+
+function emitToggleBattleCard(cardName) {
+    socket.emit('update', ["ToggleBattleCard", 2, cardNumber]);
+}
+*/
+
+var cardImgElement = document.getElementById("cardImage");
+var cardImgModal = document.getElementById("cardImageModal");
+
+socket.on('update', function (update) {
+    console.log("Received update:", update);
+    var command = update[0];
+    var playerNumber = update[1];
+    switch (command) {
+        case "HP":
+            var targetElementId = "hpLabelPlayer" + playerNumber;
+            document.getElementById(targetElementId).innerText = "HIT POINTS: " + update[2];
+            break;
+        case "Name":
+            var targetElementId = "playerNameSpan" + playerNumber;
+            document.getElementById(targetElementId).innerText = update[2];
+            break;
+        case "Pilot":
+            var targetElementId = "playerPilotElement" + playerNumber;
+            document.getElementById(targetElementId).innerText = update[2];
+            updatePlayerPilotCard(playerNumber);
+            break;
+        case "TogglePilotCard":
+            var pilotNameElement = "playerPilotElement" + playerNumber;
+            var selectedPilotName = document.getElementById(pilotNameElement).innerText.trim();
+            var newPilotImgURL = getPilotImgURLForPilotName(selectedPilotName);
+            cardImgElement.src = newPilotImgURL;
+            $('#cardImageModal').modal('show');
+            break;
+        case "ToggleSmallPilotCard":
+            var pilotCardImageElement = document.getElementById("pilotCardImgPlayer" + playerNumber);
+            var newVisibility = "visible"
+            if (pilotCardImageElement.style.visibility == newVisibility) {
+                newVisibility = "hidden";
+            }
+            console.log("Setting visibility for " + pilotCardImageElement.id);
+            pilotCardImageElement.style.visibility = newVisibility;
+            break;
+        case "TTSString":
+            var targetElementId = "playerPilotElement" + playerNumber;
+            var cardArray = update[2].split("\\ ");
+            console.log(cardArray);
+            var pilotCode = cardArray.filter((cardCode) => cardCode.startsWith("AEF0"))[0].trim();
+            var selectedPilotName = convertPilotCodeToPilotName(pilotCode);
+            console.log("New pilot name: ", selectedPilotName);
+            document.getElementById(targetElementId).innerText = selectedPilotName;
+            updatePlayerPilotCard(playerNumber);
+            break;
+        case "ToggleBattleCard":
+            console.log("Received new battle card image: ", update[2]);
+            cardImgElement.src = update[2];
+            $('#cardImageModal').modal('show');
+            break;
+        case "HideCurrentlyShownCard":
+            console.log("Hiding modal for card");
+            $('#cardImageModal').modal('hide');
+            break;
+    }
+});
 
 // When the select changes, update the player pilot card
 function updatePlayerPilotCard(playerNumber) {
@@ -26,9 +107,9 @@ function updatePlayerPilotCard(playerNumber) {
 
 }
 
+// Get the pilot image card based on the pilot name
 function getPilotImgURLForPilotName(selectedPilotName) {
     var newPilotImgURL = "";
-
     var PILOT_IMAGE_URL_PREFIX = BUILDER_IMAGES_URL_PREFIX + "pilots/";
     console.log("Looking up pilot image for selected pilot", selectedPilotName);
     switch (selectedPilotName) {
@@ -84,113 +165,4 @@ function getPilotImgURLForPilotName(selectedPilotName) {
             newPilotImgURL = "Aerodome-Logo-800.png";
     }
     return newPilotImgURL;
-}
-
-function convertPilotCodeToPilotName(pilotCode) {
-    switch (pilotCode) {
-        case "AEF005":
-            pilotName = "Jax Fernandez";
-            break;
-
-        case "AEF002":
-            pilotName = "Lt. Archie Anderson";
-            break;
-
-        case "AEF015":
-            pilotName = "Van Vertigo";
-            break;
-
-        case "AEF012":
-            pilotName = "TSGT. Hilda McMahon";
-            break;
-
-        case "AEF007":
-            pilotName = "Fare Collins";
-            break;
-
-        case "AEF004":
-            pilotName = "Lt. Sven Bergman";
-            break;
-
-        case "AEF010":
-            pilotName = "1st Lt. Havoc Moua";
-            break;
-
-        case "AEF013":
-            pilotName = "Ash Buchanan";
-            break;
-
-        case "AEF008":
-            pilotName = "Lance Hamill";
-            break;
-
-        case "AEF001":
-            pilotName = "Capt. Theodosia Costello";
-            break;
-
-        case "AEF011":
-            pilotName = "1st Lt. Dane X";
-            break;
-
-        case "AEF014":
-            pilotName = "Dario Stardancer";
-            break;
-
-        case "AEF006":
-            pilotName = "Elena Zane";
-            break;
-
-        case "AEF003":
-            pilotName = "Lt. Sophia Saleh";
-            break;
-
-        case "AEF009":
-            pilotName = "Capt. Alice Drummond";
-            break;
-
-        case "AEF016":
-            pilotName = "B3-47L";
-            break;
-        default:
-            pilotName = "Soontir Fel";
-    }
-    return pilotName;
-}
-
-// -----------------------------------------------------------------------------------------------------
-
-// When the select changes, update the player pilot card
-function updatePlayerBattleCard(playerNumber) {
-
-    // Figure out which player we're updating
-    var selectElementId = "player1BattleCardSelect";
-    var battleCardImgElementId = "player1BattleCardImg";
-    if (playerNumber == 2) {
-        selectElementId = "player2BattleCardSelect";
-        battleCardImgElementId = "player2BattleCardImg";
-    }
-
-    console.log("Updating " + battleCardImgElementId + " based on change to " + selectElementId);
-
-    // Get the selected card CODE
-    var selectedBattleCardCode = document.getElementById(selectElementId).value.trim();
-    console.log("New battle card selection: " + selectedBattleCardCode);
-
-
-
-    // Thank you, builder, for hosting all of these!
-    var BATTLE_CARD_IMAGE_URL_PREFIX = BUILDER_IMAGES_URL_PREFIX + "battle/";
-
-    // Figure out the new URL for the card image
-    var newBattleCardImgURL = BATTLE_CARD_IMAGE_URL_PREFIX + selectedBattleCardCode + ".png";
-
-    // Allow hiding
-    if (selectedBattleCardCode == "...") {
-        newBattleCardImgURL = "";
-    }
-
-    // Apply this new URL to the img element
-    console.log("Applying new URL for that battle card: " + newBattleCardImgURL);
-    document.getElementById(battleCardImgElementId).src = newBattleCardImgURL;
-
 }

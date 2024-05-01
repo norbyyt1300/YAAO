@@ -1,70 +1,61 @@
-function convertPilotCodeToPilotName(pilotCode) {
-    switch (pilotCode) {
-        case "AEF005":
-            pilotName = "Jax Fernandez";
-            break;
+var socket = io();
 
-        case "AEF002":
-            pilotName = "Lt. Archie Anderson";
-            break;
 
-        case "AEF015":
-            pilotName = "Van Vertigo";
-            break;
 
-        case "AEF012":
-            pilotName = "TSGT. Hilda McMahon";
-            break;
+socket.on('update', function (update) {
+    console.log('Socket update received from settings page: ', update);
+});
 
-        case "AEF007":
-            pilotName = "Fare Collins";
-            break;
+function emitPlayerHPUpdate(playerNumber, newValue) {
+    socket.emit('update', ["HP", playerNumber, newValue]);
+}
 
-        case "AEF004":
-            pilotName = "Lt. Sven Bergman";
-            break;
+function emitPlayerNameUpdate(playerNumber, newName) {
+    socket.emit('update', ["Name", playerNumber, newName]);
+}
 
-        case "AEF010":
-            pilotName = "1st Lt. Havoc Moua";
-            break;
+function emitPlayerTTSStringUpdate(playerNumber) {
 
-        case "AEF013":
-            pilotName = "Ash Buchanan";
-            break;
+    var newTTSString = document.getElementById("TTSStringInputPlayer" + playerNumber).value;
 
-        case "AEF008":
-            pilotName = "Lance Hamill";
-            break;
+    var cardArray = newTTSString.split("\\ ");
+    var battleCardArray = cardArray.filter((cardCode) => cardCode.startsWith("RH1"));
+    console.log("Player " + playerNumber + " battle card deck: ", battleCardArray);
 
-        case "AEF001":
-            pilotName = "Capt. Theodosia Costello";
-            break;
+    var pilotCode = cardArray.filter((cardCode) => cardCode.startsWith("AEF0"))[0].trim();
+    var selectedPilotName = convertPilotCodeToPilotName(pilotCode);
+    document.getElementById("pilotSelectPlayer" + playerNumber).value = selectedPilotName;
 
-        case "AEF011":
-            pilotName = "1st Lt. Dane X";
-            break;
+    for (var i = 1; i < 10; i++) {
+        var battleCardCode = battleCardArray[i - 1].replace("\\", "").replace("\\", "");
+        var battleCardBtnElementId = "battleCard" + i + "Player" + playerNumber;
+        document.getElementById(battleCardBtnElementId).innerText = battleCardCode;
 
-        case "AEF014":
-            pilotName = "Dario Stardancer";
-            break;
-
-        case "AEF006":
-            pilotName = "Elena Zane";
-            break;
-
-        case "AEF003":
-            pilotName = "Lt. Sophia Saleh";
-            break;
-
-        case "AEF009":
-            pilotName = "Capt. Alice Drummond";
-            break;
-
-        case "AEF016":
-            pilotName = "B3-47L";
-            break;
-        default:
-            pilotName = "Soontir Fel";
+        var battleCardShowButtonElementId = "battleCard" + i + "ShowButtonPlayer" + playerNumber;
+        var battleCardImgURL = BUILDER_IMAGES_URL_PREFIX + "battle/" + battleCardCode + ".png";
+        document.getElementById(battleCardShowButtonElementId).setAttribute("onClick", "emitToggleBattleCard('" + battleCardImgURL + "');");
     }
-    return pilotName;
+
+
+    socket.emit('update', ["TTSString", playerNumber, newTTSString]);
+}
+
+function emitPlayerPilotUpdate(playerNumber, newPilotName) {
+    socket.emit('update', ["Pilot", playerNumber, newPilotName]);
+}
+
+function emitTogglePilotCard(playerNumber) {
+    socket.emit('update', ["TogglePilotCard", playerNumber, document.getElementById("pilotSelectPlayer" + playerNumber).value]);
+}
+
+function emitToggleSmallPilotCard(playerNumber) {
+    socket.emit('update', ["ToggleSmallPilotCard", playerNumber, ""]);
+}
+
+function emitToggleBattleCard(battleCardImgURL) {
+    socket.emit('update', ["ToggleBattleCard", 0, battleCardImgURL]);
+}
+
+function emitHideCurrentlyDisplayedCard() {
+    socket.emit('update', ["HideCurrentlyShownCard", 0, ""]);
 }
