@@ -8,6 +8,7 @@ Yet Another Aerodome Overlay!
 2. Open a command prompt to the source code folder, then install the web server and socket connection prerequisites using the below commands:
 
     cmd.exe /c npm.cmd install express@4
+    
     cmd.exe /c npm.cmd install socket.io
 
 3. Run the overlay web server using the below command (from within the project folder):
