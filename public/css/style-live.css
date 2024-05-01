@@ -1,20 +1,11 @@
 body {
-    /*
-    background-image: url("AD OL.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    */
-
     font-family: "Bebas Neue", sans-serif;
-
     -webkit-user-select: none;
     /* Safari */
     -ms-user-select: none;
     /* IE 10 and IE 11 */
     user-select: none;
     /* Standard syntax */
-
     overflow-y: hidden;
 }
 
@@ -24,20 +15,41 @@ body {
 }
 
 .top-navbar {
-    /* background: linear-gradient(90deg, rgba(2, 0, 36, 0.9) 0%, rgba(105, 9, 121, 0.9) 20%, rgba(82, 54, 150, 0) 40%, rgba(58, 101, 181, 0) 60%, rgba(36, 143, 209, 0.9) 80%, rgba(0, 212, 255, 0.9) 100%); */
     color: white;
     padding-left: 10px;
     padding-right: 10px;
 }
 
+@media (min-width: 1919px) {
+    .pilot-label-element {
+        font-size: 30px;
+    }    
+    .player-name-element {
+        font-size: 59px;
+    }
+    .hp-elements {
+        font-size: 26px;
+    }
+}
+
+@media (min-width: 2559px) {
+    .pilot-label-element {
+        font-size: 42px;
+    }
+    .player-name-element {
+        font-size: 75px;
+    }
+    .hp-elements {
+        font-size: 38px;
+    }
+}
+
 .player-name-element {
     margin-top: 8px;
-    font-size: 59px;
 }
 
 .pilot-label-element {
     font-style: italic;
-    font-size: 30px;
     color: white;
     background-color: transparent;
     border: none;
@@ -47,12 +59,12 @@ body {
 
 .hp-elements {
     font-weight: bold;
-    font-size: 26px;
 }
 
-#player-1-hp-label {
-    padding-left: 20px;
-}
+
+
+
+
 
 .pilot-card-img {
     height: 250px;
