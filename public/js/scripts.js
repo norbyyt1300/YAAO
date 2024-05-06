@@ -33,7 +33,7 @@ function emitPlayerTTSStringUpdate(playerNumber) {
 
         var battleCardShowButtonElementId = "battleCard" + i + "ShowButtonPlayer" + playerNumber;
         var battleCardImgURL = BUILDER_IMAGES_URL_PREFIX + "battle/" + battleCardCode + ".png";
-        document.getElementById(battleCardShowButtonElementId).setAttribute("onClick", "emitToggleBattleCard('" + battleCardImgURL + "');");
+        document.getElementById(battleCardShowButtonElementId).setAttribute("onClick", "emitToggleBattleCard('" + battleCardImgURL + "'," + playerNumber + ");");
     }
 
 
@@ -52,10 +52,10 @@ function emitToggleSmallPilotCard(playerNumber) {
     socket.emit('update', ["ToggleSmallPilotCard", playerNumber, ""]);
 }
 
-function emitToggleBattleCard(battleCardImgURL) {
-    socket.emit('update', ["ToggleBattleCard", 0, battleCardImgURL]);
+function emitToggleBattleCard(battleCardImgURL, playerNumber) {
+    socket.emit('update', ["ToggleBattleCard", playerNumber, battleCardImgURL]);
 }
 
-function emitHideCurrentlyDisplayedCard() {
-    socket.emit('update', ["HideCurrentlyShownCard", 0, ""]);
+function emitHideCurrentlyDisplayedCard(playerNumber) {
+    socket.emit('update', ["HideCurrentlyShownCard" + playerNumber, playerNumber, ""]);
 }

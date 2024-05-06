@@ -26,7 +26,6 @@ function emitToggleBattleCard(cardName) {
 }
 */
 
-var cardImgElement = document.getElementById("cardImage");
 var cardImgModal = document.getElementById("cardImageModal");
 
 socket.on('update', function (update) {
@@ -51,8 +50,9 @@ socket.on('update', function (update) {
             var pilotNameElement = "playerPilotElement" + playerNumber;
             var selectedPilotName = document.getElementById(pilotNameElement).innerText.trim();
             var newPilotImgURL = getPilotImgURLForPilotName(selectedPilotName);
+            var cardImgElement = document.getElementById("cardImage" + playerNumber);
             cardImgElement.src = newPilotImgURL;
-            $('#cardImageModal').modal('show');
+            $('#cardImageModal' + playerNumber).modal('show');
             break;
         case "ToggleSmallPilotCard":
             var pilotCardImageElement = document.getElementById("pilotCardImgPlayer" + playerNumber);
@@ -75,12 +75,17 @@ socket.on('update', function (update) {
             break;
         case "ToggleBattleCard":
             console.log("Received new battle card image: ", update[2]);
+            var cardImgElement = document.getElementById("cardImage" + playerNumber);
             cardImgElement.src = update[2];
-            $('#cardImageModal').modal('show');
+            $('#cardImageModal' + playerNumber).modal('show');
             break;
-        case "HideCurrentlyShownCard":
+        case "HideCurrentlyShownCard1":
             console.log("Hiding modal for card");
-            $('#cardImageModal').modal('hide');
+            $('#cardImageModal' + playerNumber).modal('hide');
+            break;
+        case "HideCurrentlyShownCard2":
+            console.log("Hiding modal for card");
+            $('#cardImageModal' + playerNumber).modal('hide');
             break;
     }
 });
